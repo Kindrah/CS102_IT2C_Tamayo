@@ -1,0 +1,101 @@
+---
+title: "Lab Exercise 1"
+output: pdf_document
+date: "2024-02-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+URL and libraries
+```{r}
+
+library(rvest)
+library(dplyr)
+library(polite)
+library(stringr)
+
+url <- "https://www.amazon.com/?&tag=phtxtabkgode-20&ref=pd_sl_73t48p1dlf_e&adgrpid=151590336221&hvpone=&hvptwo=&hvadid=677569135158&hvpos=&hvnetw=g&hvrand=9682010799268940240&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9067222&hvtargid=kwd-10573980&hydadcr=9911_13618523&language=en_US"
+
+session <- bow(url, user_agent = "Educational purposes")
+session
+
+```
+mouse product 1
+```{r}
+url1 <- "https://www.amazon.com/TMKB-M1SE-High-Precision-Programmable-Customizable/dp/B0BGKBT1JG/ref=sr_1_1_sspa?_encoding=UTF8&content-id=amzn1.sym.12129333-2117-4490-9c17-6d31baf0582a&keywords=gaming%2Bmouse&pd_rd_r=07451766-6a08-4c21-ade6-d2c1e2883866&pd_rd_w=1k8xi&pd_rd_wg=joomW&pf_rd_p=12129333-2117-4490-9c17-6d31baf0582a&pf_rd_r=66NATZ260G7TDAX0C8TQ&qid=1707351158&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"
+session1 <- bow(url1, user_agent = "educational purposes")
+
+mouse_url1 <- read_html(url1)
+
+#scrape for the name of the product
+mousename1 <- mouse_url1 %>%
+  html_nodes("h1.a-size-large.a-spacing-none") %>%
+  html_text
+mousename1
+
+#scrape the price
+mouseprice1 <- mouse_url1 %>%
+  html_nodes("span.reinventPriceAccordionT2") %>%
+  html_text()
+mouseprice1
+
+
+#Scrape the ratings
+mouseratings1 <- mouse_url1 %>%
+  html_nodes("i.a-icon.a-icon-star.a-star-4-5.cm-cr-review-stars-spacing-big") %>%
+  html_text()
+mouseratings1
+
+#scrape the total reviews
+mousetotalrev1 <- mouse_url1 %>%
+  html_nodes("span#acrCustomerReviewText.a-size-base") %>%
+  html_text()
+mousetotalrev1
+
+#merge it in a data frame
+data_frame1 <- data.frame(
+  Product_Name = mousename1,
+  Price = mouseprice1,
+  Ratings = mouseratings1,
+  Reviews = mousetotalrev1
+)
+data_frame1
+```
+Mouse product 2
+```{r}
+url2 <- "https://www.amazon.com/DeathAdder-Wired-Gaming-Mouse-HyperPolling/dp/B0B6XTDJS1/ref=sr_1_2_sspa?_encoding=UTF8&content-id=amzn1.sym.12129333-2117-4490-9c17-6d31baf0582a&keywords=gaming+mouse&pd_rd_r=07451766-6a08-4c21-ade6-d2c1e2883866&pd_rd_w=1k8xi&pd_rd_wg=joomW&pf_rd_p=12129333-2117-4490-9c17-6d31baf0582a&pf_rd_r=66NATZ260G7TDAX0C8TQ&qid=1707351225&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+session2 <- bow(url2, user_agent = "educational purposes")
+mouse_url2 <- read_html(url2)
+
+mousename2 <- mouse_url2 %>%
+  html_nodes("span#productTitle.a-size-large.product-title-word-break") %>%
+  html_text()
+mousename2
+
+mouseprice2 <- mouse_url2 %>%
+  html_nodes("span.a-price.aok-align-center.reinventPricePriceToPayMargin.priceToPay")%>%
+  html_text()
+mouseprice2
+
+mouseratings2 <- mouse_url2 %>%
+  html_nodes("span.a-size-medium.a-color-base") %>%
+  html_text()
+mouseratings2
+
+mousetotalrev2 <- mouse_url2 %>%
+  html_nodes("a#acrCustomerReviewLink.a-link-normal") %>%
+  html_text()
+mousetotalrev2
+
+data_frame2 <- data.frame(
+  Product_name = mousename2,
+  Price = mouseprice2, 
+  Ratings = mouseratings2,
+  Reviews = mousetotalrev2
+)
+data_frame2
+```
+
+
