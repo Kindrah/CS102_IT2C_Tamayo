@@ -1,14 +1,13 @@
 ---
-title: "Lab Exercise 1"
-output: pdf_document
-date: "2024-02-08"
+title: "Untitled"
+output: html_document
+date: "2024-02-09"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-URL and libraries
+URL and Libraries
 ```{r}
 
 library(rvest)
@@ -16,86 +15,97 @@ library(dplyr)
 library(polite)
 library(stringr)
 
-url <- "https://www.amazon.com/?&tag=phtxtabkgode-20&ref=pd_sl_73t48p1dlf_e&adgrpid=151590336221&hvpone=&hvptwo=&hvadid=677569135158&hvpos=&hvnetw=g&hvrand=9682010799268940240&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9067222&hvtargid=kwd-10573980&hydadcr=9911_13618523&language=en_US"
+url <- "https://www.amazon.com/s?k=mouse&ref=nb_sb_noss"
+url2 <- "https://www.amazon.com/s?k=mouse&page=2&qid=1707484980&ref=sr_pg_2"
+url3 <- "https://www.amazon.com/s?k=mouse&page=3&qid=1707485172&ref=sr_pg_3"
+url4 <-"https://www.amazon.com/s?k=mouse&page=4&qid=1707485498&ref=sr_pg_4"
+url5 <-"https://www.amazon.com/s?k=mouse&page=5&qid=1707485573&ref=sr_pg_5"
 
 session <- bow(url, user_agent = "Educational purposes")
+session2 <- bow(url2, user_agent = "EDucational purposes")
+session3 <- bow(url3, user_agent = "Educational purposes")
+session4 <- bow(url4, user_agent = "Educational purposes")
+session5 <- bow(url5, user_agent = "Educational purposes")
+
 session
-
+session2
+session3
+session4
+session5
 ```
-mouse product 1
+url
 ```{r}
-url1 <- "https://www.amazon.com/TMKB-M1SE-High-Precision-Programmable-Customizable/dp/B0BGKBT1JG/ref=sr_1_1_sspa?_encoding=UTF8&content-id=amzn1.sym.12129333-2117-4490-9c17-6d31baf0582a&keywords=gaming%2Bmouse&pd_rd_r=07451766-6a08-4c21-ade6-d2c1e2883866&pd_rd_w=1k8xi&pd_rd_wg=joomW&pf_rd_p=12129333-2117-4490-9c17-6d31baf0582a&pf_rd_r=66NATZ260G7TDAX0C8TQ&qid=1707351158&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"
-session1 <- bow(url1, user_agent = "educational purposes")
-
-mouse_url1 <- read_html(url1)
-
-#scrape for the name of the product
-mousename1 <- mouse_url1 %>%
-  html_nodes("h1.a-size-large.a-spacing-none") %>%
-  html_text
-mousename1
-
-#scrape the price
-mouseprice1 <- mouse_url1 %>%
-  html_nodes("span.reinventPriceAccordionT2") %>%
-  html_text()
-mouseprice1
-
-
-#Scrape the ratings
-mouseratings1 <- mouse_url1 %>%
-  html_nodes("i.a-icon.a-icon-star.a-star-4-5.cm-cr-review-stars-spacing-big") %>%
-  html_text()
-mouseratings1
-
-#scrape the total reviews
-mousetotalrev1 <- mouse_url1 %>%
-  html_nodes("span#acrCustomerReviewText.a-size-base") %>%
-  html_text()
-mousetotalrev1
-
-#merge it in a data frame
-data_frame1 <- data.frame(
-  Product_Name = mousename1,
-  Price = mouseprice1,
-  Ratings = mouseratings1,
-  Reviews = mousetotalrev1
-)
-data_frame1
+mouseURL <- read_html(url)
+mouseURL2 <- read_html(url2)
+mouseURL3 <- read_html(url3)
+mouseURL4 <- read_html(url4)
+mouseURL5 <- read_html(url5)
 ```
-Mouse product 2
+
+Name scraping
 ```{r}
-url2 <- "https://www.amazon.com/DeathAdder-Wired-Gaming-Mouse-HyperPolling/dp/B0B6XTDJS1/ref=sr_1_2_sspa?_encoding=UTF8&content-id=amzn1.sym.12129333-2117-4490-9c17-6d31baf0582a&keywords=gaming+mouse&pd_rd_r=07451766-6a08-4c21-ade6-d2c1e2883866&pd_rd_w=1k8xi&pd_rd_wg=joomW&pf_rd_p=12129333-2117-4490-9c17-6d31baf0582a&pf_rd_r=66NATZ260G7TDAX0C8TQ&qid=1707351225&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
-session2 <- bow(url2, user_agent = "educational purposes")
-mouse_url2 <- read_html(url2)
 
-mousename2 <- mouse_url2 %>%
-  html_nodes("span#productTitle.a-size-large.product-title-word-break") %>%
+mouseName <- mouseURL %>%
+  html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
-mousename2
+mouseName
 
-mouseprice2 <- mouse_url2 %>%
-  html_nodes("span.a-price.aok-align-center.reinventPricePriceToPayMargin.priceToPay")%>%
+mouseName2 <- mouseURL2 %>%
+  html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
-mouseprice2
+mouseName2
 
-mouseratings2 <- mouse_url2 %>%
-  html_nodes("span.a-size-medium.a-color-base") %>%
+mouseName3 <- mouseURL3 %>%
+  html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
-mouseratings2
+mouseName3
 
-mousetotalrev2 <- mouse_url2 %>%
-  html_nodes("a#acrCustomerReviewLink.a-link-normal") %>%
+mouseName4 <- mouseURL4 %>%
+  html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
-mousetotalrev2
+mouseName4
 
-data_frame2 <- data.frame(
-  Product_name = mousename2,
-  Price = mouseprice2, 
-  Ratings = mouseratings2,
-  Reviews = mousetotalrev2
-)
-data_frame2
+mouseName5 <- mouseURL5 %>%
+  html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
+  html_text()
+mouseName5
 ```
+merging into a data frame just the product name
+```{r}
+mousedf1 <- data.frame(mouseName)
+mousedf2 <- data.frame(mouseName2)
+mousedf3 <- data.frame(mouseName3)
+mousedf4 <- data.frame(mouseName4)
+mousedf5 <- data.frame(mouseName5)
+
+mousedf <- cbind(mousedf1,mousedf2,mousedf3,mousedf4, mousedf5)
+mousedf
+```
+Price scraping for the first 22 products
+```{r}
+mousePrice <- mouseURL %>%
+  html_nodes("span.a-price") %>%
+  html_text()
+
+
+first_price <- str_extract(price[1:22], "\\$[0-9.]+")
+first_price
+
+mousePrice1 <- data.frame(first_price)
+
+mouseProduct1 <- cbind(mousedf1, mousePrice1)
+mouseProduct1
+
+#changing column names
+
+newcolumn <- c("Productname", "ProductPrice")
+colnames(mouseProduct1) = newcolumn
+
+mouseProduct1
+```
+
+
+
+
 
 
