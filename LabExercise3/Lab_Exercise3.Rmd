@@ -1,0 +1,834 @@
+---
+title: "imdb"
+output:
+  pdf_document:
+    latex_engine: xelatex
+date: "2024-02-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+URL and libraries
+```{r}
+library(rvest)
+library(dplyr)
+library(polite)
+library(stringr)
+library(readr)
+
+url <- "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
+
+session <- bow(url, user_agent = "educational purposes")
+session
+
+imdburl <- read_html(url)
+```
+
+```{r}
+movie_title <- imdburl %>%
+    html_nodes("h3.ipc-title__text") %>%
+    html_text()
+
+#subset for the movies. Taking only 10 movie titles.
+submovie <- movie_title[2:11]
+submovie
+```
+
+
+```{r}
+#1st movie url for the the name of the reviewer.
+movie1url <- "https://www.imdb.com/title/tt0111161/reviews?ref_=tt_urv"
+sessionmov <- bow(movie1url, user_agent = "educational purposes")
+
+movie <- read_html(movie1url)
+
+#2nd movie url for the the name of the reviewer.
+movie2url <- "https://www.imdb.com/title/tt0068646/reviews?ref_=tt_urv"
+sessionmov2 <- bow(movie2url, user_agent = "educational purposes")
+
+movie2 <- read_html(movie2url)
+
+#3rd movie url for the the name of the reviewer.
+movie3url <- "https://www.imdb.com/title/tt0468569/reviews?ref_=tt_urv"
+sessionmov3 <- bow(movie3url, user_agent = "educational purposes")
+
+movie3 <- read_html(movie3url)
+
+#4th movie url for the name of the reviewer.
+movie4url <- "https://www.imdb.com/title/tt0071562/reviews?ref_=tt_urv"
+sessionmov4 <- bow(movie4url, user_agent = "educational purposes")
+
+movie4 <- read_html(movie4url)
+
+#5th movie url for the name of the reviewer.
+movie5url <- "https://www.imdb.com/title/tt0050083/reviews?ref_=tt_urv"
+sessionmov5 <- bow(movie5url, user_agent = "educational purposes")
+
+movie5 <- read_html(movie5url)
+
+#6th movie url for the name of the reviewer.
+movie6url <- "https://www.imdb.com/title/tt0108052/reviews?ref_=tt_urv"
+sessionmov6 <- bow(movie6url, user_agent = "educational purposes")
+
+movie6 <- read_html(movie6url)
+
+#7th movie url for the name of the reviewer.
+movie7url <- "https://www.imdb.com/title/tt0167260/reviews?ref_=tt_urv"
+sessionmov7 <- bow(movie7url, user_agent = "educational purposes")
+
+movie7 <- read_html(movie7url)
+
+#8th movie url for the name of the reviewer.
+movie8url <- "https://www.imdb.com/title/tt0110912/reviews?ref_=tt_urv"
+sessionmov8 <- bow(movie8url, user_agent = "educational purposes")
+
+movie8 <- read_html(movie8url)
+
+#9th movie url for the name of the reviewer.
+movie9url <- "https://www.imdb.com/title/tt0120737/reviews?ref_=tt_urv"
+sessionmov9 <- bow(movie9url, user_agent = "educational purposes")
+
+movie9 <- read_html(movie9url)
+
+#10th movie url for the name of the reviewer.
+movie10url <- "https://www.imdb.com/title/tt0060196/reviews?ref_=tt_urv"
+sessionmov10 <- bow(movie10url, user_agent = "educational purposes")
+
+movie10 <- read_html(movie10url)
+```
+1st movie
+```{r}
+#get the first movie title to include it for the data frame.
+get1sttitle <- submovie[1]
+get1sttitle
+
+#get the reviewer's name.
+reviewer <- movie %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer
+
+#subset the reviewer to get only 10 names.
+subsetreviewer <- reviewer[1:10]
+subsetreviewer
+
+#get the the date of the reviews.
+reviewdate <- movie %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate
+#subset the dates to get only 10.
+subsetreviewdate <- reviewdate[1:10]
+subsetreviewdate
+
+#get the user ratings or the stars.
+reviewstar <- movie %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar <- reviewstar[1:10]
+subsetreviewstar
+
+#split the output to get on;y the rates without the \n.
+starsplit <- unlist(strsplit(subsetreviewstar, "\\s+"))
+starsplit
+
+#select only the ratings to exclude the white space
+splitstar <- starsplit[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar
+
+#get the contents of the reviews.
+reviewtext <- movie %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext <- reviewtext[1:10]
+subsetreviewtext
+
+#get the review title.
+reviewtitle <- movie %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle <- reviewtitle[1:10]
+subsetreviewtitle
+
+reviewsplit1 <- unlist(strsplit(subsetreviewtitle, "\n"))
+reviewsplit1
+
+```
+put all the outputs of the first movie in a data frame
+```{r}
+movie1df <- data.frame(Movie_title = get1sttitle,
+                       Reviewer = subsetreviewer,
+                       ReviewDate = subsetreviewdate,
+                       Stars = splitstar,
+                       Textreview = subsetreviewtext,
+                       TitleReview = reviewsplit1
+                       )
+movie1df
+```
+
+```{r}
+#get the title for the 2nd movie
+get2ndtitle <- submovie[2]
+get2ndtitle
+
+#get the reviewer's name.
+reviewer2 <- movie2 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer2
+
+#subset the reviewer to get only 10 names.
+subsetreviewer2 <- reviewer2[1:10]
+subsetreviewer2
+
+#get the the date of the reviews.
+reviewdate2 <- movie2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate2
+#subset the dates to get only 10.
+subsetreviewdate2 <- reviewdate2[1:10]
+subsetreviewdate2
+
+#get the user ratings or the stars.
+reviewstar2 <- movie2 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar2 <- reviewstar2[1:10]
+subsetreviewstar2
+
+#split the output to get on;y the rates without the \n.
+starsplit2 <- unlist(strsplit(subsetreviewstar2, "\\s+"))
+starsplit2
+#select only the ratings to exclude the white space
+splitstar2 <- starsplit2[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar2
+
+#get the contents of the reviews.
+reviewtext2 <- movie2 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext2 <- reviewtext2[1:10]
+subsetreviewtext2
+
+#get the review title.
+reviewtitle2 <- movie2 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle2 <- reviewtitle2[1:10]
+subsetreviewtitle2
+
+reviewsplit2 <- unlist(strsplit(subsetreviewtitle2, "\n"))
+reviewsplit2
+```
+```{r}
+movie2df <- data.frame(Movie_title = get2ndtitle,
+                       Reviewer = subsetreviewer2,
+                       ReviewDate = subsetreviewdate2,
+                       Stars = splitstar2,
+                       Textreview = subsetreviewtext2,
+                       TitleReview = reviewsplit2
+                       )
+movie2df
+```
+```{r}
+#get the title for the 3rd movie
+get3rdtitle <- submovie[3]
+get3rdtitle
+
+#get the reviewer's name.
+reviewer3 <- movie3 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer3
+
+#subset the reviewer to get only 10 names.
+subsetreviewer3 <- reviewer3[1:10]
+subsetreviewer3
+
+#get the the date of the reviews.
+reviewdate3 <- movie3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate3
+#subset the dates to get only 10.
+subsetreviewdate3 <- reviewdate3[1:10]
+subsetreviewdate3
+
+#get the user ratings or the stars.
+reviewstar3 <- movie3 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar3 <- reviewstar3[1:10]
+subsetreviewstar3
+
+#split the output to get on;y the rates without the \n.
+starsplit3 <- unlist(strsplit(subsetreviewstar3, "\\s+"))
+starsplit3
+#select only the ratings to exclude the white space
+splitstar3 <- starsplit3[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar3
+
+#get the contents of the reviews.
+reviewtext3 <- movie3 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext3 <- reviewtext3[1:10]
+subsetreviewtext3
+
+#get the review title.
+reviewtitle3 <- movie3 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle3 <- reviewtitle3[1:10]
+subsetreviewtitle3
+
+reviewsplit3 <- unlist(strsplit(subsetreviewtitle3, "\n"))
+reviewsplit3
+```
+```{r}
+movie3df <- data.frame(Movie_title = get3rdtitle,
+                       Reviewer = subsetreviewer3,
+                       ReviewDate = subsetreviewdate3,
+                       Stars = splitstar3,
+                       Textreview = subsetreviewtext3,
+                       TitleReview = reviewsplit3
+                       )
+movie3df
+```
+```{r}
+#get the title for the 4th movie
+get4thtitle <- submovie[4]
+get4thtitle
+
+#get the reviewer's name.
+reviewer4 <- movie4 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer4
+
+#subset the reviewer to get only 10 names.
+subsetreviewer4 <- reviewer4[1:10]
+subsetreviewer4
+
+#get the the date of the reviews.
+reviewdate4 <- movie4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate4
+#subset the dates to get only 10.
+subsetreviewdate4 <- reviewdate4[1:10]
+subsetreviewdate4
+
+#get the user ratings or the stars.
+reviewstar4 <- movie4 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar4 <- reviewstar4[1:10]
+subsetreviewstar4
+
+#split the output to get on;y the rates without the \n.
+starsplit4 <- unlist(strsplit(subsetreviewstar4, "\\s+"))
+starsplit4
+#select only the ratings to exclude the white space
+splitstar4 <- starsplit4[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar4
+
+#get the contents of the reviews.
+reviewtext4 <- movie4 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext4<- reviewtext4[1:10]
+subsetreviewtext4
+
+#get the review title.
+reviewtitle4 <- movie4 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle4 <- reviewtitle4[1:10]
+subsetreviewtitle4
+
+reviewsplit4 <- unlist(strsplit(subsetreviewtitle4, "\n"))
+reviewsplit4
+```
+
+```{r}
+movie4df <- data.frame(Movie_title = get4thtitle,
+                       Reviewer = subsetreviewer4,
+                       ReviewDate = subsetreviewdate4,
+                       Stars = splitstar4,
+                       Textreview = subsetreviewtext4,
+                       TitleReview = reviewsplit4
+                       )
+movie4df
+```
+```{r}
+#get the title for the 5th movie
+get5thtitle <- submovie[5]
+get5thtitle
+
+#get the reviewer's name.
+reviewer5 <- movie5 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer5
+
+#subset the reviewer to get only 10 names.
+subsetreviewer5 <- reviewer5[1:10]
+subsetreviewer5
+
+#get the the date of the reviews.
+reviewdate5 <- movie5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate5
+#subset the dates to get only 10.
+subsetreviewdate5 <- reviewdate5[1:10]
+subsetreviewdate5
+
+#get the user ratings or the stars.
+reviewstar5 <- movie5 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar5 <- reviewstar5[1:10]
+subsetreviewstar5
+
+#split the output to get on;y the rates without the \n.
+starsplit5 <- unlist(strsplit(subsetreviewstar5, "\\s+"))
+starsplit5
+#select only the ratings to exclude the white space
+splitstar5 <- starsplit5[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar5
+
+#get the contents of the reviews.
+reviewtext5 <- movie5 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext5 <- reviewtext5[1:10]
+subsetreviewtext5
+
+#get the review title.
+reviewtitle5 <- movie5 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle5<- reviewtitle5[1:10]
+subsetreviewtitle5
+
+reviewsplit5 <- unlist(strsplit(subsetreviewtitle5, "\n"))
+reviewsplit5
+```
+
+```{r}
+movie5df <- data.frame(Movie_title = get5thtitle,
+                       Reviewer = subsetreviewer5,
+                       ReviewDate = subsetreviewdate5,
+                       Stars = splitstar5,
+                       Textreview = subsetreviewtext5,
+                       TitleReview = reviewsplit5
+                       )
+movie5df
+```
+```{r}
+#get the title for the 6th movie
+get6thtitle <- submovie[6]
+get6thtitle
+
+#get the reviewer's name.
+reviewer6 <- movie6 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer6
+
+#subset the reviewer to get only 10 names.
+subsetreviewer6 <- reviewer6[1:10]
+subsetreviewer6
+
+#get the the date of the reviews.
+reviewdate6 <- movie6 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate6
+#subset the dates to get only 10.
+subsetreviewdate6 <- reviewdate6[1:10]
+subsetreviewdate6
+
+#get the user ratings or the stars.
+reviewstar6 <- movie6 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar6 <- reviewstar6[1:10]
+subsetreviewstar6
+
+#split the output to get on;y the rates without the \n.
+starsplit6 <- unlist(strsplit(subsetreviewstar6, "\\s+"))
+starsplit6
+#select only the ratings to exclude the white space
+splitstar6 <- starsplit6[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar6
+
+#get the contents of the reviews.
+reviewtext6 <- movie6 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext6 <- reviewtext6[1:10]
+subsetreviewtext6
+
+#get the review title.
+reviewtitle6 <- movie6 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle6<- reviewtitle6[1:10]
+subsetreviewtitle6
+
+reviewsplit6 <- unlist(strsplit(subsetreviewtitle6, "\n"))
+reviewsplit6
+review6clean <- iconv(reviewsplit6, to = "ASCII", sub = "byte")
+review6clean
+```
+
+```{r}
+movie6df <- data.frame(Movie_title = get6thtitle,
+                       Reviewer = subsetreviewer6,
+                       ReviewDate = subsetreviewdate6,
+                       Stars = splitstar6,
+                       Textreview = subsetreviewtext6,
+                       TitleReview = review6clean
+                       )
+movie6df
+```
+```{r}
+#get the title for the 5th movie
+get7thtitle <- submovie[7]
+get7thtitle
+
+#get the reviewer's name.
+reviewer7 <- movie7 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer7
+
+#subset the reviewer to get only 10 names.
+subsetreviewer7 <- reviewer7[1:10]
+subsetreviewer7
+
+#get the the date of the reviews.
+reviewdate7 <- movie7 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate7
+#subset the dates to get only 10.
+subsetreviewdate7 <- reviewdate7[1:10]
+subsetreviewdate7
+
+#get the user ratings or the stars.
+reviewstar7 <- movie7 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar7 <- reviewstar7[1:10]
+subsetreviewstar7
+
+#split the output to get on;y the rates without the \n.
+starsplit7 <- unlist(strsplit(subsetreviewstar7, "\\s+"))
+starsplit7
+#select only the ratings to exclude the white space
+splitstar7 <- starsplit7[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar7
+
+#get the contents of the reviews.
+reviewtext7 <- movie7 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext7 <- reviewtext7[1:10]
+subsetreviewtext7
+
+#get the review title.
+reviewtitle7 <- movie7 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle7<- reviewtitle7[1:10]
+subsetreviewtitle7
+
+reviewsplit7 <- unlist(strsplit(subsetreviewtitle7, "\n"))
+reviewsplit7
+```
+
+```{r}
+movie7df <- data.frame(Movie_title = get7thtitle,
+                       Reviewer = subsetreviewer7,
+                       ReviewDate = subsetreviewdate7,
+                       Stars = splitstar7,
+                       Textreview = subsetreviewtext7,
+                       TitleReview = reviewsplit7
+                       )
+movie7df
+```
+```{r}
+#get the title for the 8th movie
+get8thtitle <- submovie[8]
+get8thtitle
+
+#get the reviewer's name.
+reviewer8 <- movie8 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer8
+
+#subset the reviewer to get only 10 names.
+subsetreviewer8 <- reviewer8[1:10]
+subsetreviewer8
+
+#get the the date of the reviews.
+reviewdate8 <- movie8 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate8
+#subset the dates to get only 10.
+subsetreviewdate8 <- reviewdate8[1:10]
+subsetreviewdate8
+
+#get the user ratings or the stars.
+reviewstar8 <- movie8 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar8 <- reviewstar8[1:10]
+subsetreviewstar8
+
+#split the output to get on;y the rates without the \n.
+starsplit8 <- unlist(strsplit(subsetreviewstar8, "\\s+"))
+starsplit8
+#select only the ratings to exclude the white space
+splitstar8 <- starsplit8[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar8
+
+#get the contents of the reviews.
+reviewtext8 <- movie8 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext8 <- reviewtext8[1:10]
+subsetreviewtext8
+
+cleanreviewtext8 <- iconv(subsetreviewtext8, to = "ASCII", sub = "byte")
+cleanreviewtext8
+#get the review title.
+reviewtitle8 <- movie8 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle8<- reviewtitle8[1:10]
+subsetreviewtitle8
+
+reviewsplit8 <- unlist(strsplit(subsetreviewtitle8, "\n"))
+reviewsplit8
+
+cleanreview8 <- iconv(reviewsplit8, to = "ASCII", sub = "byte")
+cleanreview8
+```
+
+```{r}
+movie8df <- data.frame(Movie_title = get8thtitle,
+                       Reviewer = subsetreviewer8,
+                       ReviewDate = subsetreviewdate8,
+                       Stars = splitstar8,
+                       Textreview = cleanreviewtext8,
+                       TitleReview = cleanreview8
+                       )
+movie8df
+```
+```{r}
+#get the title for the 8th movie
+get9thtitle <- submovie[9]
+get9thtitle
+
+#get the reviewer's name.
+reviewer9 <- movie9 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer9
+
+#subset the reviewer to get only 10 names.
+subsetreviewer9 <- reviewer9[1:10]
+subsetreviewer9
+
+#get the the date of the reviews.
+reviewdate9 <- movie9 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate9
+#subset the dates to get only 10.
+subsetreviewdate9 <- reviewdate9[1:10]
+subsetreviewdate9
+
+#get the user ratings or the stars.
+reviewstar9 <- movie9 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar9 <- reviewstar9[1:10]
+subsetreviewstar9
+
+#split the output to get on;y the rates without the \n.
+starsplit9 <- unlist(strsplit(subsetreviewstar9, "\\s+"))
+starsplit9
+#select only the ratings to exclude the white space
+splitstar9 <- starsplit9[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar9
+
+#get the contents of the reviews.
+reviewtext9 <- movie9 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext9 <- reviewtext9[1:10]
+subsetreviewtext9
+
+#get the review title.
+reviewtitle9 <- movie9 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle9<- reviewtitle9[1:10]
+subsetreviewtitle9
+
+reviewsplit9 <- unlist(strsplit(subsetreviewtitle9, "\n"))
+reviewsplit9
+```
+
+```{r}
+movie9df <- data.frame(Movie_title = get9thtitle,
+                       Reviewer = subsetreviewer9,
+                       ReviewDate = subsetreviewdate9,
+                       Stars = splitstar9,
+                       Textreview = subsetreviewtext9,
+                       TitleReview = reviewsplit9
+                       )
+movie9df
+```
+```{r}
+#get the title for the 8th movie
+get10thtitle <- submovie[10]
+get10thtitle
+
+#get the reviewer's name.
+reviewer10 <- movie10 %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+reviewer10
+
+#subset the reviewer to get only 10 names.
+subsetreviewer10 <- reviewer10[1:10]
+subsetreviewer10
+
+#get the the date of the reviews.
+reviewdate10 <- movie10 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+reviewdate10
+#subset the dates to get only 10.
+subsetreviewdate10 <- reviewdate10[1:10]
+subsetreviewdate10
+
+#get the user ratings or the stars.
+reviewstar10 <- movie10 %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+#subset the stars to get only 10 of it.
+subsetreviewstar10 <- reviewstar10[1:10]
+subsetreviewstar10
+
+#split the output to get on;y the rates without the \n.
+starsplit10 <- unlist(strsplit(subsetreviewstar10, "\\s+"))
+starsplit10
+
+#select only the ratings to exclude the white space
+splitstar10 <- starsplit10[c(2,4,6,8,10,12,14,16,18,20)]
+splitstar10
+
+
+#get the contents of the reviews.
+reviewtext10 <- movie10 %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+#subset it ti get only 10 of it.
+subsetreviewtext10 <- reviewtext10[1:10]
+subsetreviewtext10
+
+cleanreviewtext10 <- iconv(subsetreviewtext10, to = "ASCII", sub = "byte")
+cleanreviewtext10
+#get the review title.
+reviewtitle10 <- movie10 %>%
+  html_nodes("a.title") %>%
+  html_text()
+#subset the review title.
+subsetreviewtitle10 <- reviewtitle10[1:10]
+subsetreviewtitle10
+
+reviewsplit10<- unlist(strsplit(subsetreviewtitle10, "\n"))
+reviewsplit10
+
+cleanreview10 <- iconv(reviewsplit10, to = "ASCII", sub = "byte")
+cleanreview10
+
+```
+
+```{r}
+movie10df <- data.frame(Movie_title = get10thtitle,
+                       Reviewer = subsetreviewer10,
+                       ReviewDate = subsetreviewdate10,
+                       Stars = splitstar10,
+                       Textreview = cleanreviewtext10,
+                       TitleReview = cleanreview10
+                       )
+movie10df
+```
+
+```{r}
+moviesdf <- rbind( movie1df, 
+                  movie2df,
+                   movie3df, 
+                   movie4df, 
+                  movie5df, 
+                  movie6df, 
+                  movie7df,
+                  movie8df, 
+                  movie9df, 
+                 movie10df)
+moviesdf
+```
+
+```{r}
+write.csv(moviesdf, "IMDBmovies.csv")
+
+read.csv("IMDBmovies.csv")
+```
+
+
+
+
+
+
+
+
