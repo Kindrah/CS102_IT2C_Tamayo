@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Lab1"
 output: html_document
 date: "2024-02-09"
 ---
@@ -22,7 +22,7 @@ url4 <-"https://www.amazon.com/s?k=mouse&page=4&qid=1707485498&ref=sr_pg_4"
 url5 <-"https://www.amazon.com/s?k=mouse&page=5&qid=1707485573&ref=sr_pg_5"
 
 session <- bow(url, user_agent = "Educational purposes")
-session2 <- bow(url2, user_agent = "EDucational purposes")
+session2 <- bow(url2, user_agent = "Educational purposes")
 session3 <- bow(url3, user_agent = "Educational purposes")
 session4 <- bow(url4, user_agent = "Educational purposes")
 session5 <- bow(url5, user_agent = "Educational purposes")
@@ -41,68 +41,444 @@ mouseURL3 <- read_html(url3)
 mouseURL4 <- read_html(url4)
 mouseURL5 <- read_html(url5)
 ```
-
 Name scraping
 ```{r}
-
+#scraping first 20 product names.
 mouseName <- mouseURL %>%
   html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
 mouseName
 
+submousename1 <- mouseName[1:20]
+
+#scraping 2nd 20 product names.
 mouseName2 <- mouseURL2 %>%
   html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
 mouseName2
 
+submousename2 <- mouseName2[1:20]
+#scraping 3rd 20 product names.
 mouseName3 <- mouseURL3 %>%
   html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
 mouseName3
 
+submousename3 <- mouseName3[1:20]
+#scraping 4th 20 product names.
 mouseName4 <- mouseURL4 %>%
   html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
 mouseName4
 
+submousename4 <- mouseName4[1:20]
+#scraping 5th 20 product names.
 mouseName5 <- mouseURL5 %>%
   html_nodes("span.a-size-medium.a-color-base.a-text-normal")%>%
   html_text()
 mouseName5
-```
-merging into a data frame just the product name
-```{r}
-mousedf1 <- data.frame(mouseName)
-mousedf2 <- data.frame(mouseName2)
-mousedf3 <- data.frame(mouseName3)
-mousedf4 <- data.frame(mouseName4)
-mousedf5 <- data.frame(mouseName5)
 
-mousedf <- cbind(mousedf1,mousedf2,mousedf3,mousedf4, mousedf5)
-mousedf
+submousename5 <- mouseName5[1:20]
+
+
 ```
-Price scraping for the first 22 products
+Price scraping for the 100 product price for the mouse.
 ```{r}
 mousePrice <- mouseURL %>%
   html_nodes("span.a-price") %>%
   html_text()
 
+pricemouse1 <- str_extract(mousePrice[1:20], "\\$[0-9.]+")
+pricemouse1
 
-first_price <- str_extract(price[1:22], "\\$[0-9.]+")
-first_price
+mousePrice2 <- mouseURL2 %>%
+  html_nodes("span.a-price") %>%
+  html_text()
 
-mousePrice1 <- data.frame(first_price)
+pricemouse2 <- str_extract(mousePrice[1:20], "\\$[0-9.]+")
+pricemouse2
 
-mouseProduct1 <- cbind(mousedf1, mousePrice1)
-mouseProduct1
+mousePrice3 <- mouseURL3 %>%
+  html_nodes("span.a-price") %>%
+  html_text()
 
-#changing column names
+pricemouse3 <- str_extract(mousePrice[1:20], "\\$[0-9.]+")
+pricemouse3
 
-newcolumn <- c("Productname", "ProductPrice")
-colnames(mouseProduct1) = newcolumn
+mousePrice4 <- mouseURL4 %>%
+  html_nodes("span.a-price") %>%
+  html_text()
 
-mouseProduct1
+pricemouse4 <- str_extract(mousePrice[1:20], "\\$[0-9.]+")
+pricemouse4
+
+mousePrice5 <- mouseURL5 %>%
+  html_nodes("span.a-price") %>%
+  html_text()
+
+pricemouse5 <- str_extract(mousePrice[1:20], "\\$[0-9.]+")
+pricemouse5
 ```
+scraping for mouse ratings.
+```{r}
+mouseRatings <- mouseURL %>%
+  html_nodes("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
+  html_text()
+
+submouseRatings <- mouseRatings[1:20]
+submouseRatings
+
+mouseRatings2 <- mouseURL2 %>%
+  html_nodes("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
+  html_text()
+
+submouseRatings2 <- mouseRatings2[1:20]
+submouseRatings2
+
+mouseRatings3 <- mouseURL3 %>%
+  html_nodes("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
+  html_text()
+
+submouseRatings3 <- mouseRatings3[1:20]
+submouseRatings3
+
+mouseRatings4 <- mouseURL4 %>%
+  html_nodes("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
+  html_text()
+
+submouseRatings4 <- mouseRatings4[1:20]
+submouseRatings4
+
+mouseRatings5 <- mouseURL5 %>%
+  html_nodes("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
+  html_text()
+
+submouseRatings5 <- mouseRatings5[1:20]
+submouseRatings5
+
+```
+scraping for the reviews of the 100 mouse products.
+```{r}
+mouseReview <- mouseURL %>%
+  html_nodes("span.a-size-base.s-underline-text") %>%
+  html_text()
+#1st subset to get only 220product reviews.
+subsetmousereview <- mouseReview[1:20]
+subsetmousereview
+
+mouseReview2 <- mouseURL2 %>%
+  html_nodes("span.a-size-base.s-underline-text") %>%
+  html_text()
+#2nd subset to get only 20 product reviews.
+subsetmousereview2 <- mouseReview2[1:20]
+subsetmousereview2
+
+mouseReview3 <- mouseURL3 %>%
+  html_nodes("span.a-size-base.s-underline-text") %>%
+  html_text()
+#3rd subset to get only 20 product reviews.
+subsetmousereview3 <- mouseReview3[1:20]
+subsetmousereview3
+
+mouseReview4 <- mouseURL4 %>%
+  html_nodes("span.a-size-base.s-underline-text") %>%
+  html_text()
+#4th subset to get only 22 product reviews.
+subsetmousereview4 <- mouseReview4[1:20]
+subsetmousereview4
+
+mouseReview5 <- mouseURL5 %>%
+  html_nodes("span.a-size-base.s-underline-text") %>%
+  html_text()
+#5th subset to get only 12 product reviews.
+subsetmousereview5 <- mouseReview5[1:20]
+subsetmousereview5
+```
+1st 22 products data frame
+```{r}
+product1 <- data.frame(mousename=submousename1,
+                       mouseprice=pricemouse1,
+                       mouseratings=submouseRatings,
+                       mousereview=subsetmousereview)
+product1
+
+write.csv(product1, "product1.csv")
+read.csv("product1.csv")
+```
+```{r}
+product2 <- data.frame(mousename=submousename2,
+                       mouseprice=pricemouse2,
+                       mouseratings=submouseRatings2,
+                       mousereview=subsetmousereview2)
+product2
+write.csv(product2, "product2.csv")
+read.csv("product2.csv")
+```
+```{r}
+product3 <- data.frame(mousename=submousename3,
+                       mouseprice=pricemouse3,
+                       mouseratings=submouseRatings3,
+                       mousereview=subsetmousereview3)
+product3
+write.csv(product3, "product3.csv")
+read.csv("product3.csv")
+```
+```{r}
+product4 <- data.frame(mousename=submousename4,
+                       mouseprice=pricemouse4,
+                       mouseratings=submouseRatings4,
+                       mousereview=subsetmousereview4)
+product4
+write.csv(product4, "product4.csv")
+read.csv("product4.csv")
+```
+```{r}
+product5 <- data.frame(mousename=submousename5,
+                       mouseprice=pricemouse5,
+                       mouseratings=submouseRatings5,
+                       mousereview=subsetmousereview5)
+product5
+write.csv(product5, "product5.csv")
+read.csv("product5.csv")
+```
+combined csv of all the products
+```{r}
+mouseproducts <- rbind(product1, product2, product3, product4, product5)
+mouseproducts
+
+
+write.csv(mouseproducts, "mouseproducts.csv")
+read.csv("mouseproducts.csv")
+```
+session for another type of product
+```{r}
+
+url2nd <- "https://www.amazon.com/s?k=watch&crid=CWDMKDKQOSJB&sprefix=watch%2Caps%2C1147&ref=nb_sb_noss_1"
+url2nd_2 <- "https://www.amazon.com/s?k=watch&page=2&crid=CWDMKDKQOSJB&qid=1709383540&sprefix=watch%2Caps%2C1147&ref=sr_pg_2"
+url2nd_3 <- "https://www.amazon.com/s?k=watch&page=3&crid=CWDMKDKQOSJB&qid=1709383540&sprefix=watch%2Caps%2C1147&ref=sr_pg_3"
+url2nd_4 <-"https://www.amazon.com/s?k=watch&page=4&crid=CWDMKDKQOSJB&qid=1709383600&sprefix=watch%2Caps%2C1147&ref=sr_pg_4"
+url2nd_5 <-"https://www.amazon.com/s?k=watch&page=5&crid=CWDMKDKQOSJB&qid=1709383624&sprefix=watch%2Caps%2C1147&ref=sr_pg_5"
+
+session2nd <- bow(url2nd, user_agent = "Educational purposes")
+session2nd_2 <- bow(url2nd_2, user_agent = "Educational purposes")
+session2nd_3 <- bow(url2nd_3, user_agent = "Educational purposes")
+session2nd_4 <- bow(url2nd_4, user_agent = "Educational purposes")
+session2nd_5 <- bow(url2nd_5, user_agent = "Educational purposes")
+
+session2nd
+session2nd_2
+session2nd_3
+session2nd_4
+session2nd_5
+```
+
+```{r}
+watchURL <- read_html(url2nd)
+watchURL2 <- read_html(url2nd_2)
+watchURL3 <- read_html(url2nd_3)
+watchURL4 <- read_html(url2nd_4)
+watchURL5 <- read_html(url2nd_5)
+```
+scraping the product names of the watches
+```{r}
+watchname <- watchURL %>%
+  html_nodes("h2.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-4") %>%
+  html_text()
+watchname
+
+watchname2 <- watchURL2 %>%
+  html_nodes("h2.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-4") %>%
+  html_text()
+watchname2
+
+mixwatchnames <- c(watchname, watchname2)
+subsetwatchnames <- mixwatchnames[1:100]
+
+watchnames <- data.frame(subsetwatchnames)
+```
+
+```{r}
+watchprice <- watchURL %>%
+  html_nodes("span.a-offscreen") %>%
+  html_text()
+watchprice
+
+subsetwatchprice <- watchprice[1:70]
+
+watchprice2 <- watchURL2 %>%
+  html_nodes("span.a-offscreen") %>%
+  html_text()
+
+subsetwatchprice2 <- watchprice2[1:69]
+
+mixwatchprices <- c(subsetwatchprice, subsetwatchprice2)
+subsewatchprices <- mixwatchprices[1:100]
+
+watchprices <- data.frame(subsewatchprices)
+```
+
+```{r}
+watchratings <- watchURL %>%
+  html_nodes("span.a-icon-alt") %>%
+  html_text()
+
+subsetwatchratings <- watchratings[1:70]
+
+watchratings2 <- watchURL2 %>%
+  html_nodes("span.a-icon-alt") %>%
+  html_text()
+
+subsetwatchratings2 <- watchratings2[1:69]
+
+mixwatchratings <- c(subsetwatchratings, subsetwatchratings2)
+subsetwatchmix <- mixwatchratings[1:100]
+
+watchrates <- data.frame(subsetwatchmix)
+```
+
+```{r}
+watchreview <- watchURL %>%
+  html_nodes("span.a-size-base.s-underline-text") %>%
+  html_text()
+
+watchreview2 <- watchURL2 %>%
+  html_nodes("span.a-size-base.s-underline-text") %>%
+  html_text()
+
+mixwatchrev <- c(watchreview, watchreview2)
+subsetwatchrev <- mixwatchrev[1:100]
+
+watchreviews <- data.frame(subsetwatchrev)
+```
+
+```{r}
+
+watchproduct <- cbind(watchnames, watchprices, watchrates, watchreviews)
+
+write.csv(watchproduct, "watchproducts.csv")
+read.csv("watchproducts.csv")
+```
+```{r}
+producturl <- "https://www.amazon.com/Fashion-Stainless-Waterproof-Chronograph-Watches/product-reviews/B07YQRKJP4/ref=cm_cr_getr_d_paging_btm_prev_1?ie=UTF8&reviewerType=all_reviews&pageNumber=1"
+producturl2 <- "https://www.amazon.com/Fashion-Stainless-Waterproof-Chronograph-Watches/product-reviews/B07YQRKJP4/ref=cm_cr_getr_d_paging_btm_2?ie=UTF8&pageNumber=2&reviewerType=all_reviews&pageSize=10"
+
+sessionrev <- bow(producturl, user_agent = "educational purposes")
+sessionrev2 <- bow(producturl2, user_agent = "educational purposes")
+
+productread <- read_html(producturl)
+productread2 <- read_html(producturl2)
+```
+
+```{r}
+productrevname1 <- productread %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+productrevname1
+
+productreviewer <- productread %>%
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+productreviewer
+
+subsetreviewer <- productreviewer[1:10]
+productdate <- productread %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+subsetdate <- productdate[1:10]
+subsetdate
+
+productreview <- productread %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+productreview
+productreviewclean <- unlist(str_split(productreview, "\n"))
+productreviewclean <- productreviewclean[productreviewclean != ""]
+productreviewclean <- str_trim(productreviewclean)
+
+subsetproductreview <- productreviewclean[c(11, 23, 35, 47, 59, 71, 83, 95, 107, 119)]
+subsetproductreview
+
+productrating <- productread %>%
+  html_nodes("span.a-icon-alt") %>%
+  html_text()
+productrating
+productratingsub <- productrating[1:10]
+
+```
+
+```{r}
+productrevname2 <- productread2 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+productrevname2
+
+productreviewer2 <- productread2 %>%
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+productreviewer2
+
+subsetreviewer2 <- productreviewer2[1:10]
+
+productdate2 <- productread2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+subsetdate2 <- productdate2[1:10]
+subsetdate2
+
+productreview2 <- productread2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+productreview2
+productreviewclean2 <- unlist(str_split(productreview, "\n"))
+productreviewclean2 <- productreviewclean[productreviewclean != ""]
+productreviewclean2 <- str_trim(productreviewclean)
+
+subsetproductreview2 <- productreviewclean2[c(11, 23, 35, 47, 59, 71, 83, 95, 107, 119)]
+subsetproductreview2
+
+productrating2 <- productread2 %>%
+  html_nodes("span.a-icon-alt") %>%
+  html_text()
+productrating2
+productratingsub2 <- productrating2[1:10]
+
+```
+
+```{r}
+mixproductreviewer <- c(subsetreviewer, subsetreviewer2)
+mixproductreviewer
+
+mixproductdate <- c(subsetdate, subsetdate2)
+
+mixproductreview <- c(subsetproductreview, subsetproductreview2)
+
+mixproductrating <- c(productratingsub, productratingsub2)
+```
+
+```{r}
+productreviewsdf <- data.frame(productname = productrevname1,
+                               productreviewer = mixproductreviewer,
+                               datereviewed = mixproductdate,
+                               reviews = mixproductreview,
+                               rating = mixproductrating)
+productreviewsdf
+
+write.csv(productreviewsdf, "productreviewsdf.csv")
+read.csv("productreviewsdf.csv") 
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
