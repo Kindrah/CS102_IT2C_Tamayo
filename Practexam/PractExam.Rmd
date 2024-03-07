@@ -29,7 +29,7 @@ integer when necessary.
 typeof(warpbreaks$breaks)
 typeof(warpbreaks$wool)
 typeof(warpbreaks$tension)
-#new
+#new file
 
 #the data type of breaks, wool, and tension is double, integer, and integer.
 ```
