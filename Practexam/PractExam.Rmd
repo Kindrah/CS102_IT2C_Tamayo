@@ -1,0 +1,115 @@
+---
+title: "exercise#1"
+output:
+  pdf_document: default
+  html_document: default
+date: "2024-03-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+A.Load the built-in warpbreaks dataset.
+```{r}
+data("warpbreaks")
+warpbreaks
+```
+A1.Find out, in a single command, which columns of warpbreaks are either numeric or
+integer. What are the data types of each column?
+```{r}
+str(warpbreaks)
+```
+A2.How many observations does it have?
+```{r}
+#it has 54 observations.
+```
+A3.Is numeric a natural data type for the columns which are stored as such? Convert to
+integer when necessary.
+```{r}
+typeof(warpbreaks$breaks)
+typeof(warpbreaks$wool)
+typeof(warpbreaks$tension)
+
+#the data type of breaks, wool, and tension is double, integer, and integer.
+```
+A4.Error messages in R sometimes report the underlying type of an object rather than the
+user-level class. Derive from the following code and error message what the
+underlying type. Explain what is the error all about. Do not just copy the error
+message that was displayed.
+```{r}
+
+```
+B.Load the exampleFile.txt
+B1.Read the complete file using readLines.
+```{r}
+file <- file("exampleFile.txt")
+
+fileread <- readLines(file)
+fileread
+```
+B2.Separate the vector of lines into a vector containing comments and a vector
+containing the data. Hint: use grepl.
+```{r}
+comments <- fileread[grepl("^//", fileread)]
+comments
+
+datavector <- fileread[!grepl("^//", fileread)]
+datavector
+```
+B3.Extract the date from the first comment line and display on the screen “It was created
+data.”
+```{r}
+subcomments <- comments[1]
+date <- gsub("// Survey data. Created : ", "", subcomments)
+date
+
+cat("It was created, ", date)
+```
+B4.
+B4a.Split the character vectors in the vector containing data lines by semicolon (;)
+using strsplit.
+```{r}
+vectorsplit <- (strsplit(datavector, ";"))
+vectorsplit
+```
+B4b.Find the maximum number of fields retrieved by split. Append rows that are
+shorter with NA's.
+```{r}
+
+maxvector <- max(lengths(vectorsplit))
+maxvector
+
+rowappend <- lapply(vectorsplit, function(x) c(x, rep(NA, maxvector - length(x))))
+rowappend
+```
+B4c.Use unlist and matrix to transform the data to row-column format.
+```{r}
+
+unlistdata <- unlist(rowappend)
+unlistdata
+
+datamatrix <- matrix(unlistdata, ncol = 4, nrow=3,
+                     dimnames = list(c("row1","row2", "row3")))
+datamatrix
+```
+B5d.From comment lines 2-4, extract the names of the fields. Set these as
+colnames for the matrix you just created.
+```{r}
+fieldnames <- comments[2:4]
+extfieldname <- gsub("//", "", fieldnames)
+extfieldname
+rownames(datamatrix) <- extfieldname
+datamatrix
+
+```
+
+
+
+
+
+
+
+
+
+
+
