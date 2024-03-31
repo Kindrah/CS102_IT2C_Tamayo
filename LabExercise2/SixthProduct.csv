@@ -1,0 +1,651 @@
+"","ProductName","reviewers","star_rates","date_of_review","text_review"
+"1","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Julian P.","5.0 out of 5 stars","February 11, 2024","
+
+
+
+
+
+
+
+  
+  
+    I bought 4 different DisplayPort KVM switches to use with one of my PC and Dell laptop with dock station. So far this one is the best. Build quality is excellent. KVM works fine, it's very stable. Picture quality is outstanding, no lags, no flickering. I also like how solid is remote control connection (see on the picture) compare to usual frail micro-USB sockets.I use 3 Dell 4k 60Hz monitors, U3219Q and two S2721QS. I do not see any difference if monitors connected directly to PC/laptop or through KVM switch. There is some delay when switching between computers but that is expected.I also tested with DP to HDMI adapter, with DP to USB-C and USB-C to DP adapters. KVM switch handles that just fine, without any problems. If you like connect input to USB-C with adapter, or/and if you like connect output to HDMI or USB-C instead of DP with adapters then it also works just fine.So I highly recommend this KVM switch for using with 3 or less monitors even with different video inputs (adding adapters).A few suggestions to further improve this very good product. First, I'd like it to have bottom silicon pads. Then PC1/PC2 LED indicators are quite small, not very visible. Also when remote control is connected, its plug make awkward access to switch button for right-handed users. And finally common problem for almost all KVM switches: please make at least one USB output on the rear or on the side. I didn't test with 8K connections and I'll update this review when I have a chance.You can buy this KVM switch with confidence. It's a high quality, works excellent and has 2 years warranty with registration.
+  
+"
+"2","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Julian P.","4.0 out of 5 stars","January 7, 2024","
+
+
+
+
+
+
+
+  
+  
+    My arrangement: The Linux Mint v21.2 computer (6th gen i5) has a Nvidia GTX 1650 video card with 2 HDMI outputs and 1 DisplayPort. The Windows 11 computer (12th gen i5) has a Nvidia 1070Ti video card with 1 HDMI output and 2 DisplayPorts.  Not using its third DisplayPort.  I am using three ""Display port to HDMI"" cable adapters in the system.  Results with this KVM are good, but not stellar.1) Occasionally, the arrangement of active windows on the three displays gets rearranged when switching from one computer to the other.  Linux is more stable than Windows in this respect.2) I can bring the Linux computer out of sleep using  a key press, but not the Windows computer.  I have to push its power switch to bring it out of standby.  Occasionally a key press will work.  - update: This behavior seems dependent upon the position of the KVM switch when the computers are shutdown.  The computer  that is not selected by the KVM switch during shutdown appears to not be able to come out of standby with a keyboard key press.3) The Linux computer got confused once using this KVM, and would not display video.  Had to reboot.4) I also tested a Razer Blackwidow Pro 3 keyboard with this KVM.  Fully functional in Windows.  In Linux, using the OpenRazer driver with Polychromatic, full functionality did not occur.  Probably the driver, not the KVM. Keyboard and static colors worked, some dynamic themes, but not the multimedia controls.  Static colors are OK, but I need these multimedia keys and volume control.  Will look for a different keyboard.5) No degradation in screen quality using this KVM.  Resolution is 1920x1080 for each of the three monitors.6) Switching time is about 5 seconds for 2 of the 3 monitors.  The third monitor takes about 7 seconds to switch.  All monitors are same brand and model (AOC 2425SWD).It works well enough for my purposes and is relatively inexpensive.  Not returning.  This was my second one.  I returned the first one because its behavior was quite chaotic, and it would lose the third monitor occasionally.* * * * * *Update - After posting this review, I was contacted by the company.  I received an apology from the company for this product not performing as well as expected, and they gave me a full refund.  And I was also was told there was no need to return the switch.  This is incredible customer service, totally unexpected.As I stated before, despite the quirks in behavior with my setup, it does work well enough.  I do get an occasionally movement of applications when switching computers, and coming out of Standby mode works on 1 of the 2 computers (most of the time).  On the plus side, there is no degradation in video quality using the switch, a Razer gaming keyboard worked mostly correctly (see details above), and switching speed is tolerable at 5-7 seconds.  So would I recommend this switch?  Yes, because it gives sufficiently good performance at its price point.  And customer service is surprisingly good.
+  
+"
+"3","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Leslie Payne","5.0 out of 5 stars","December 13, 2023","
+
+
+
+
+
+
+
+  
+  
+    So I have a strange setup; a triple monitor setup on my PC and I added a MacMini to the mix which only needs to output to the middle monitor (the big one).  My PC runs three, the Mac Mini - one.  To top it off, the right hand side is in portrait mode for my email.  Still I have to have two keyboards which was a pain.  I’m an IT professional and not a gamer.  I do tubes and recordings on the MacMini so one screen in the center is enough.  My PC has one HDMI and 3 Display Ports (DP).  You can daisy chain DPs but that wouldn’t have helped in this setup.  The MacMini has an HDMI and several USB-C ports - one of which I made into a DP with a USB-C to DP cable.  Sooooo…the inputs on this device are one HDMI and one DP and USB from each machine and one HDMI and one DP on the outputs.  Since I am only changing the center monitor (the big beautiful one) for the audio/video work I just routed a single DP from each computer to the device (plus a USB for keyboard and mouse) and used just the DP output port to the big monitor in the center.  This works flawlessly, albeit it takes a few seconds for Windows to figure out how many monitors it has before it rearranges the screen. The icons do NOT rearrange themselves each time so that was good.  Figuring out which monitor is your MAIN display is the toughest problem for the Windows machines.  When I’m in PC mode, I have the DP routed to the KVM for the center monitor and the other two DPs directly plugged into he side monitors (left side - landscape, right side - portrait).  When I switch to the MacMini, the center monitor is no longer connected to the PC (according to Windows) and the left and right displays (monitors) hemorrhage a little before settling on two displays while the MacMini shows up on the center monitor - as planned.  So, it works and for the price - a great solution for my rig.  Hope this was helpful albeit I’m sure confusing.  The unit works as advertised; you just need to be on your game when PLANNING the monitor configurations unless you just go straight TWO in TWO out.  This was not my case and I didn’t want to pay $400 for a triple monitor KVM!
+  
+"
+"4","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","No1UNo","1.0 out of 5 stars","January 16, 2024","
+
+
+
+
+
+
+
+  
+  
+    I've been tinkering for about two hours trying to get a mobile workstation and desktop workstation to connect using the KVM 3DP version of this product.  I have only been able to get the display for the desktop workstation to show on three monitors.  That PC is Win10-64 and has an AMD W7000 which has 4 display ports.  My mobile workstation is Win11-64 and has an NVIDIA RTX5000 which needs a dock via thunderbolt in order to have enough display ports to send three signals to the DisplayPort KVM switch 2x3.  There is no mention of a single feed running all three display port outs.What worked for me:  1) I can see the three monitors of the desktop workstation only. 2) The button to change PCs on the front of the device and the push button changer.  When switching though all monitors go to sleep after a couple seconds because the unit doesn't appear to be getting any signal from the second PC.What doesn't work for me:  1a) NONE of the 4 'front' USB ports, (for a keyboard, mouse, printer and hard drive work).  1b) I tried wireless fobs and 1c) a wired keyboard.  1d) I tried connecting the USB unifying hubs directly to the PC's in an attempt to initialize them to the respective computers, but no luck.  2a) No lights appear identifying PC1 or PC2 'in use'.  2b) Checked the power supply, tried different sources, plugged in multiple times.  2c) Of course, 'turned it off and on again' numerous times.  2d) tries swapping cables between the one that worked with the one that didn't.Unhappy with:A) Obviously it's not working as advertised.  It is literally an expensive doorstop.B) All the USB ports appear 'loose'.  The cables or fobs are loose when inserted.  It makes me feel like a good connection doesn't exist.  I tried wiggling to get a connection, but shouldn't have to.C) The 'User Manual' consists of an 8 page 3""x3.5"" double-sided English-German language folded pamphlet.  There are no model numbers, phone numbers, companies, etc...  it is about as generic as you can get.  So there is no way to look it up online and try to debug.D) Under features it says 'Support Windows/Vista/XP and mac OS, Linux and Unix, Plug and Play.  It does not mention Windows 10 or 11.I would gladly update this review if someone would contact me from the company.  Tried the troubleshooting through Amazon returns, that was 5 minutes of my life I would like back.Perhaps this is one bad device, or there are a bunch of false posts, misleading people to purchase these?  I hope it's the prior.
+  
+"
+"5","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","D. Lustri","5.0 out of 5 stars","February 12, 2024","
+
+
+
+
+
+
+
+  
+  
+    I was looking for a KVM that would reliable allow me to share three 144Hz+ DisplayPort monitors with two computers and the only solutions I could find were extremely expensive. Most of the available KVM switches that support three monitors have two DisplayPort and one HDMI. I do not want that because my monitors only support 60Hz when HDMI is used. Then I found this one, and I am glad that I did. It works flawlessly. My center monitor is 165Hz and the left and right are 144Hz. All three monitors operate at full speed. I cannot find anything to complain about how it works. Switching between computers is as simple as pressing the button.The included USB cables are a little bit shorter than I would like them to be, but they are long enough to reach both computers. An extra foot would be useful. There isn't any slack and I cannot move the computers without unplugging the USB or dragging the KVM out of place on my desk. But, that is a small complaint. I am very plesed with the purchase.
+  
+"
+"6","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Mr. Fox","5.0 out of 5 stars","March 8, 2024","
+
+
+
+
+
+
+
+  
+  
+    I purchased this switch so I can share the use of 3 monitors between 2 PC’s. It was very easy to setup and it works exactly as advertised. The remote switch save having to use the button on the switch. Overall it’s a good value. I recommend this switch.
+  
+"
+"7","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","PRD","3.0 out of 5 stars","March 8, 2024","
+
+
+
+
+
+
+
+  
+  
+    Update:The seller reached out and was able to provide a full refund for this item without a need to return it. That's great customer service in my opinion. For that, I'd raise it 1 star rating. I don't usually give 5 stars and the product did degrade overtime so I can't give it 4 stars.---------------->This KVM met my needs in terms of features. However, it only worked well until closer to 1 month in. It took me about 1-2 weeks to get parts for testing and it went past return date for the product so I can no longer return. I wouldn't say the price for this is too cheap either. I've had other KVMs before which haven't had this problem. I bought this one because needed support for 3 monitors.Summary:-One of my monitor would occasionally flicker. I tried replacing cables, tried swapping monitors but problem got worse and worse. Sometimes would continuously flicker while I'm working on something important or gaming.-Sometimes when I do a switch from one computer to another, it wouldn't recognize some of my monitors anymore. I had to power down and power back up the KVM to get it to recognize.-Sometimes switching from computer to computer, my wireless mouse and keyboard would also lose connection and have to be reconnected or power down and back to get it to connect.
+  
+"
+"8","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Mike","4.0 out of 5 stars","January 24, 2024","
+
+
+
+
+
+
+
+  
+  
+    EDIT:  I have been in touch with the seller who has tried quite a bit to troubleshoot with me and did actually help me fix the glitchy issue on my main monitor! My situation is just a little too weird for all three monitors to work on both computers because of the collection of outputs I have, but the seller has refunded me for the switch since it doesn't really work for my situation. They've gone above and beyond most sellers I've had to work with for tech stuff and I would not hesitate to recommend the switch to someone who has less weird stuff going on than I do. Added an extra star for wonderful customer support.ORIGINAL: I have limited space and work from home, with my work being done on a separate computer so I need to use a single desk. Before buying this switch, I had a messy nest of cables that connected each of my 3 monitors to both my personal PC and the work PC, then a cheap USB switch to change my mouse/keyboard back and forth. It was a pain to hit the button on each monitor to swap between the inputs when switching between computers. I found this switch which was far less expensive than another that I had found and had the correct number of ports that I needed. It works! Sometimes. On the secondary computer, I have to swap from DisplayPort to HDMI as it only has one DisplayPort, one Mini DisplayPort, and one HDMI port. The DisplayPort and Mini DisplayPort work fine, but it makes all three of the monitors bug out when I connect the HDMI port to the DisplayPort on the switch. When I go straight to the monitor itself from the computer, it works fine which is a workaround I'm using but is a little annoying to deal with.The other thing is the USB ports on the front of the switch. I have a keyboard, mouse, and wireless headset plugged into them. On one computer, they're fine. But on the second computer, when I try to join a voice call, I get an error on the computer that there is not enough power to the USB ports to make that happen and I need to move the dongle from the switch to the secondary computer. Again, not the end of the world, but annoying.And occasionally when gaming on my main PC, I'll notice my main monitor (UHD 2560x1440p 27"") glitches every so often with a small line across it's width which it never did before being plugged into the switch.Overall, the switch does what I want it to do with some finagling around; but I don't think it's powerful enough for my application in particular. Other than the few quirks, it does work as advertised. The build of the unit is super solid, metal - I was expecting plastic, if I'm being honest. If you didn't have as much power hungry stuff as I do, it would probably work fine.
+  
+"
+"9","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Declan Hunter","4.0 out of 5 stars","January 12, 2024","
+
+
+
+
+
+
+
+  
+  
+    Long story short, I bought a couple modern computers for my home office for use in software development, and I ended up buying about 4 KVM switches to connect my gear. I have a Mac Mini M2 Pro with Thunderbolt 4 and a Dell Workstation with RTX graphics using DP 1.4. This is KVM number 4, and I did a quick down and dirty setup late last night to see if it works.Start with the BadI'll start with the bad, which is I can fire up the Mac Mini, run some apps, then push the button for the Dell, fire up some apps, then go back to the Mac Mini, and the Primary Monitor loses it signal. But wait ... there is hope ... where I can use the power switch in back and toggle it, then the Mac Primary Monitor fires up and is back, with all apps still in place. So it's made for 3 monitors, but I'm using 2, and I'm not sure if that's an issue or not, hope not.Now the Rest which is betterWhen holding and looking at the box, it borders between being very well built but declines to just good enough in terms of build quality. It's on the good or better side of cheap as far as build goes, but excels more in logic or design and practical use. In other words, it more thought out in terms of modern use in 2024, where all the USB ports are 3.0, and all the DP ports support 1.4.I used some Silkland cables, mostly 16K braided, and some 8K braided Thunderbolt to DP, and the video signal is awesome, doesn't seem degraded. Switching between computers takes about 5 seconds. The Mac sees 2 monitors, along with the Dell. Resolutions are supported as if the box is not there.Early ConclusionI have one more KVM to test, a 2 computer 2 monitor one by KCEVE. It's cheaper, looks better with branding, but same build quality, perhaps a little better. If the KCEVE works 100%, I'll probably keep that one. But I want to keep this one because it supports 3 monitors. I can live with having to turn it off and back on, but I'll put a couple of hours into a solution to make it perfect in operation. This KVM switch is simple, basic, and has the modern stuff for modern computers to fully work as intended, and that's about it.Lessons I learned, why I bought 4 KVM switchesWell unlike the old days of VGA, where it's obvious that you need a port for every piece of glass, some protocols like DP allow daisy chaining, so I thought I could get away with a 2 computer and one monitor KVM switch. But I ran into issues like the mouse being boxed into the primary monitor using the Mac, and only being able to mirror the display with the Mac, and only certain USB ports being active with the Mac. On the PC side, everything worked fine except for the USB ports supporting a Das Keyboard and Logitech wireless mouse. Those K/M ports on the back of other KVM switches caused other issues I never saw coming.
+  
+"
+"10","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","jkirkerx","4.0 out of 5 stars","March 9, 2024","
+
+
+
+
+
+
+
+  
+  
+    I've been using this for several months to switch between my work laptop and my personal gaming rig. The laptop is connected with a thunderbolt docking station. I had a little trouble with the peripherals not staying connected to the laptop initially but I got that worked out by adjusting the order of the usb ports on the docking station. The switching takes about 5 seconds, which is fine, but the screens allways reset to single monitor mode. So everytime I switch I have to re-drag any open windows back to the preferred monitor. Aside from that and the delay on switching, its working very well so far. I'd give 5 stars if I didn't have to rest the windows everytime.
+  
+"
+"11","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Tyler E.","4.0 out of 5 stars","January 29, 2024","
+
+
+
+
+
+
+
+  
+  
+    So...this was my 2nd KVM switch after thinking I needed a better one from the first cheaper one I bought. Nope, the issue persisted...every time I swapped from my laptop, to my PC using the KVM, my PC suddenly registered TWO mouse cursers...and I would lose control of the curser and it would go CRAZY on my screen clicking away, and zig-zagging in every direction. I had to reinstall WIndows the first time because after unplugging the KVM, I STILL had the issue.It turns out, because I was using a USB powered set of desk speakers, THAT caused all of the problems. I still really do not know why I had this issue, or the root cause. I Googled away, and the most I can get is either USB3.0 does not have entire backwards compatibility with other USB2.0 devices.My advice to you is when setting up a KVM, unplug all USB devices from your computer - and then steadily plug them back in AFTER you set-up the KVM. If you have any compatibility issues - you'll know fairly soon with the mouse.
+  
+"
+"12","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Webshot","4.0 out of 5 stars","March 8, 2024","
+
+
+
+
+
+
+
+  
+  
+    I have purchased and replaced several others that were simply old or poorly made. This KVM is decent quality and has worked well to date.
+  
+"
+"13","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","WorldTraveler","4.0 out of 5 stars","February 24, 2024","
+
+
+
+
+
+
+
+  
+  
+    It’s working like expected for our two computers/three monitors and all attachments (keyboard, mouse, camera, etc.)  Note, you need 2 cables per monitor w kvm’s.  We didn’t realize that and thought it wasn’t working at first.  So go get extra cables now.
+  
+"
+"14","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Richard Teel","4.0 out of 5 stars","October 15, 2023","
+
+
+
+
+
+
+
+  
+  
+    I had no Display Port monitors so I use a Display Port to HDMI adapter on the Display Port of my video card to the monitor. I did not think this would be a problem with a KVM but I was wrong. This KVM (maybe all) will not work with a Display Port to HDMI adapter on the Display Port channel. To be clear, I connected the Display Port from the graphics card to the KVM, then used a Display Port to HDMI adapter from the KVM to the monitor but it would not work. I ended up buying new monitors with Display Port and HDMI inputs to use this KVM switch. Once I bought new monitors, the switch worked as expected.Bottom Line: This KVM switch works well if your monitors support Display Port and HDMI. If at least one supports Display Port, you are good to go. If not, be prepared to buy new monitor(s) or a different switch.Just for clarity, you may use a Display Port to HDMI adapter on the HDMI side of the switch. I am using one on my HP Elitedesk Mini, which has two Display Port outputs and no HDMI.UPDATE: After a month of use, the power adapter failed for the unit. I tested the open circuit voltage and it was correct but it was not able to supply enough current to power the unit. I had another adapter that had the same rating and connector. I used it and the unit works fine. I was unable to contact the seller and I contacted Amazon. They were only able to process a return and refund as the product is no longer in stock. I did not want to return it as the switch is working fine. I only wanted to get a new power adapter.
+  
+"
+"15","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Kindle Customer","4.0 out of 5 stars","February 28, 2024","
+
+
+
+
+
+
+
+  
+  
+    Works well but it keeps clicking like it’s trying to switch over.
+  
+"
+"16","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Tech guy with some kind of skill","4.0 out of 5 stars","January 14, 2024","
+
+
+
+
+
+
+
+  
+  
+    The product did the job it needed to with it switching between my laptop and desktop real nicely. However, the cable switch didn't work in allowing me to switch between and I can not use my rgb keyboard and mouse and haven't tested a normal keyboard yet.Over all for the price and if it works for me with my 2 monitors it is good for the price point compared to the more expensive type of KVMs.
+  
+"
+"17","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Chris ","5.0 out of 5 stars","March 8, 2024","
+
+
+
+
+
+
+
+  
+  
+    So much better than my last kvm switch.  I prefer the HDMI format as well, so having Options was nice.  There's not much else to say!  Plugged it in and booted it up and it work!  No tips or tricks to this one.  One and done!Strongly recommend!
+  
+"
+"18","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Bob T.","5.0 out of 5 stars","March 27, 2024","
+
+
+
+
+
+
+
+  
+  
+    Works great for switching between two PCs with dual monitors and single wired keyboard and mouse
+  
+"
+"19","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Amazon Customer","4.0 out of 5 stars","January 3, 2024","
+
+
+
+
+
+
+
+  
+  
+    This HDMI KVM Switch 2x2 is being used to switch computers.  I did have connection issues with a couple of the USB 3.0 connections.  With a mouse and key board plugged in, I would have intermittant breaks in the connections.  I solved it by plugging in a USB hub.  Now one mouse and one keyboard works on two computers.
+  
+"
+"20","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Jen","5.0 out of 5 stars","March 13, 2024","
+
+
+
+
+
+
+
+  
+  
+    Thank you!They even sent an after sales service card for 2 years of free replacement or warranty service :)This is perfect and easy to use & setup!
+  
+"
+"21","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Charles W. Houseworth","5.0 out of 5 stars","January 29, 2024","
+
+
+
+
+
+
+
+  
+  
+    I am an experienced user of MacOS and Linux and needed a way to share two computers with desktop versions of those operating systems  on my 27"" 4K monitors. Frankly, I am blown away with how well this switch works.  It is well constructed and even has a remote switch that allows me to alternate between the computers with a simple button push.  It even allows me to use my Logitech MX keyboard and mouse for both without having to set separate switches on those peripherals.  This might be the best piece of low priced tech that I have bought in quite a while.  I highly recommend it.
+  
+"
+"22","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","K.","5.0 out of 5 stars","January 30, 2024","
+
+
+
+
+
+
+
+  
+  
+    Update: very good customer service. Also: I eventually got the flickering to stop after tweaking the monitor's refresh rates. I also got a brand new laptop and this one runs everything smoothly at 60hz (that is, one 4k monitor + one old 1200p monitor). Hopefully this information is useful to someone else.All in all, this KVM switch is pretty solid, especially at this price point.Original review: I am using this KVM switch with a 4k monitor and an old 1600x1200 monitor. If I set my 4k monitor at anything more than 30hz, it turns off for a few seconds every 20-30 seconds.
+  
+"
+"23","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Nivek","4.0 out of 5 stars","February 5, 2024","
+
+
+
+
+
+
+
+  
+  
+    Switches between screen, kb, mouse wih high res on monitor
+  
+"
+"24","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","PSmith","2.0 out of 5 stars","March 5, 2024","
+
+
+
+
+
+
+
+  
+  
+    When I first got this KVM switch, it felt like striking gold, an affordable KVM to use my multiple high-resolution monitors for work and for my gaming computer. It delivered on its promises, performing admirably and offering exceptional value compared to its counterparts. However, this initial joy was short-lived, as durability and functionality issues emerged over time.+ Seamless Switching: The ability to switch between work and personal computers was flawless, greatly enhancing my productivity and workspace efficiency.+ Incredible Value: For its price, the performance of the KVM switch initially seemed unbeatable, providing functionalities often reserved for higher-priced alternatives. High resolution, high refresh rate KVMs are usually hundreds of dollars.+/- The USB ports on the front of the switch aren't ideally placed, in my opinion, I wish the USBs were in the back even if the box needed to be bigger (makes it hard to cable manage)- Durability Issues: After only a month of use, the PC2 input malfunctioned and ceased working, raising concerns about the product's longevity.- Display Compatibility: When used with my 3840x1600 144hz monitor, the display would occasionally flicker. Despite trying different cables, inputs, and monitors, I'm convinced this is an issue with the KVM. When I plug my monitor directly into my computer with the same cable, I don't have this issue.While the KVM switch offers substantial value and impressive functionality at the outset, potential buyers should weigh these benefits against the possibility of encountering similar issues that I faced. It's a mixed bag - a product that promises much but may fall short on reliability over time. I assume users with lower resolution displays won't experience these issues, as it won't put as much strain on the KVM.
+  
+"
+"25","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Freedom V.","5.0 out of 5 stars","February 2, 2024","
+
+
+
+
+
+
+
+  
+  
+    After using this KVM switch, I wish I would have bought one sooner.  So nice to use two computers and two monitors with ease, all while using a common keyboard, mouse, and camera.  Slick!  Setup is easy.  Remember to turn the KVM switch ""ON"".  I missed that step in the instructions initially and thought it didn't work, however, a thorough review of the instructions pointed out my error.  If you need a 2x2 KVM switch, this is an excellent choice.
+  
+"
+"26","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Kelton","3.0 out of 5 stars","March 19, 2024","
+
+
+
+
+
+
+
+  
+  
+    I purchased this item and once it was setup, I found that one of the HDMI ports did not work so I had to return/switch the unit.  Once the new unit arrived, it worked well for about 2 weeks when the same issue came up with one of the HDMI port outputs.
+  
+"
+"27","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Brent R.","3.0 out of 5 stars","March 1, 2024","
+
+
+
+
+
+
+
+  
+  
+    Works great,  except all the USB slots are faulty, where when I plug in any device the connection is loose, even to the point they disconnect communication from the computer. I'm returning an trying a different brand.
+  
+"
+"28","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","yardie65","3.0 out of 5 stars","February 21, 2024","
+
+
+
+
+
+
+
+  
+  
+    Very compact with fixed switch to move from PC1 to PC2. HDMI connection for monitor worked but could not get DP port to work. Had to return the unit unfortunately. Did try the troubleshooting guide but to no avail.
+  
+"
+"29","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Perry Lee","5.0 out of 5 stars","February 24, 2024","
+
+
+
+
+
+
+
+  
+  
+    Very satisfied with this product. Switch quickly between 2 monitors, good display quality!
+  
+"
+"30","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Jon Shaw","5.0 out of 5 stars","February 3, 2024","
+
+
+
+
+
+
+
+  
+  
+    This KVM switch works perfectly so far. Reminder (I was confused at first): you need lots of HDMI/DP cables. For example, I have 2 monitors and 2 computers so I need 6 cables. For 3 monitors it would be 9. So z=x+(x*y)
+  
+"
+"31","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Michael Accardi","5.0 out of 5 stars","February 4, 2024","
+
+
+
+
+
+
+
+  
+  
+    Works great on Windows and Mac. Allows you to share camera and usb speaker between both. Highly recommend!
+  
+"
+"32","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Terrence","5.0 out of 5 stars","January 19, 2024","
+
+
+
+
+
+
+
+  
+  
+    This device works way better than I expected. Only downside is how many cables you need, but a small inconvenience for a great product.
+  
+"
+"33","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Joey","2.0 out of 5 stars","March 3, 2024","
+
+
+
+
+
+
+
+  
+  
+    It has been 24 hours since I've set mine up with 3 DPs and the controller button that is connected via audio label does not work. I was hoping to have my KVM hidden for my setup but I have to now have it easily accessible since the wire connected button does not let me manually switch between computers. Also, whenever I do switch computers, my mouse will have to be unplugged and plugged back in to work.
+  
+"
+"34","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","C","5.0 out of 5 stars","January 12, 2024","
+
+
+
+
+
+
+
+  
+  
+    I’ve tried several KVM switches and this is by far the best product I’ve had. It is simple to use, switches between computers quickly, and works seamlessly. Definitely recommend!
+  
+"
+"35","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Yunis","5.0 out of 5 stars","January 26, 2024","
+
+
+
+
+
+
+
+  
+  
+    Works as intended. Switching between PC and docked laptop.
+  
+"
+"36","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Barry Ausmus","5.0 out of 5 stars","October 21, 2023","
+
+
+
+
+
+
+
+  
+  
+    Ever wanted to do true multitasking? Me neither! But this lil gem will fix you right up! Cant find a way to scratch that ADHD itch? Then look no further! Switches and doo dads alike rejoice over the dopamine hit this KVM will give to that lil ADHDer at home. Hold tight lil guy! KVMs got your back. Get switch happy today and keep your attention deficets away with up to 2 PCs today!
+  
+"
+"37","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","gary","2.0 out of 5 stars","March 18, 2024","
+
+
+
+
+
+
+
+  
+  
+    slow switching has issues with newer mouse and keyboards
+  
+"
+"38","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","f","5.0 out of 5 stars","November 30, 2023","
+
+
+
+
+
+
+
+  
+  
+    The only kvm switch that actually works. Forget the other ones, this is solid and does its job seamlessly.
+  
+"
+"39","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Viix.io","5.0 out of 5 stars","December 15, 2023","
+
+
+
+
+
+
+
+  
+  
+    Great price point for 3x DP kvm.
+  
+"
+"40","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","John E","5.0 out of 5 stars","November 19, 2023","
+
+
+
+
+
+
+
+  
+  
+    Works well and as expected.  Extension control cable is an excellent addition.
+  
+"
+"41","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Amazon Customer","1.0 out of 5 stars","February 26, 2024","
+
+
+
+
+
+
+
+  
+  
+    I am using a wireless mouse and keyboard. They work great when plugged into the computer. When they are plugged into the KVM they disconnected frequently for a few seconds, and strange things happen like shift being stuck in an on mode. Also the two cords that are sent were usb A to usb C rather than usb A to A. This did not work for me since I need the usb C port to be available.
+  
+"
+"42","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Brian Geber","1.0 out of 5 stars","March 3, 2024","
+
+
+
+
+
+
+
+  
+  
+    The monitor 2 port seems dead.  I can plug eith monitor into port one and it works but port two can not be detected.  I tried s laptop and a pc but both had no ability to put a display on whatever monitor i plugged into port two.Save your money and buy something else.
+  
+"
+"43","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Ryan","1.0 out of 5 stars","March 18, 2024","
+
+
+
+
+
+
+
+  
+  
+    Arrived broken.  2nd monitor port didn't work for either computer.  Tried replacing cables, changing ports on the monitor (which had JUST been working before the switch went into place).  Nothing worked.
+  
+"
+"44","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Ivan P.","1.0 out of 5 stars","March 6, 2024","
+
+
+
+
+
+
+
+  
+  
+    Initially everything was working the way is supposed to work. But like some users here, now when I press the button to switch to Channel one the screen stays black. Currently only Channer 2 is working
+  
+"
+"45","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","B Simon","1.0 out of 5 stars","March 23, 2024","
+
+
+
+
+
+
+
+  
+  
+    It doesn't switch well between computers. I cannot recommend this.  I have had KVM switches in the past, and never had issues with them.
+  
+"
+"46","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Josh Genal","1.0 out of 5 stars","February 14, 2024","
+
+
+
+
+
+
+
+  
+  
+    After a couple months of light use (only around 10 hours per week) the ports began to fail. The button was dead on arrival. May have been a red flag, but wasn't needed for my build.
+  
+"
+"47","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","87racer","1.0 out of 5 stars","December 27, 2023","
+
+
+
+
+
+
+
+  
+  
+    Mac Studio with M1 Ultra and triple display video is unstable. 3rd screen doesn't resume from off and flickers. Tried with different cables and no change. Replaced with different brand that had no issues.Edit: Seller reached out and offered replacement or refund. Could have been a fluke that this one had issues but the seller was interested in resolving the issue for me. Good customer service.
+  
+"
+"48","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","vince","1.0 out of 5 stars","March 3, 2024","
+
+
+
+
+
+
+
+  
+  
+    Absolute junk.  USB failed after 20 minutes of use.
+  
+"
+"49","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Douglas H.","1.0 out of 5 stars","December 31, 2023","
+
+
+
+
+
+
+
+  
+  
+    Only 1 monitor pass through worked on pc1 and none worked on pc 2 when switched. Only one usb port would switch as well Junk.
+  
+"
+"50","8K@60Hz HDMI KVM Switch 3 Monitors 2 Computers USB 3.0 KVM Switcher with 4 USB Ports Monitor Switch for 2 Computers Support Extended & Copy Mode Wired Controller 12V DC Adapter 2 USB Cables Included","Greg W.","1.0 out of 5 stars","January 16, 2024","
+
+
+
+
+
+
+
+  
+  
+    Front USB outlets stopped working after a week of use. Totally pointless if they do not work!
+  
+"
