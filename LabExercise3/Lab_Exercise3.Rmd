@@ -168,6 +168,7 @@ movie1df <- data.frame(Movie_title = get1sttitle,
                        TitleReview = reviewsplit1
                        )
 movie1df
+write.csv(movie1df, "Movie1.csv")
 ```
 
 ```{r}
@@ -237,7 +238,9 @@ movie2df <- data.frame(Movie_title = get2ndtitle,
                        TitleReview = reviewsplit2
                        )
 movie2df
+write.csv(movie2df, "Movie2.csv")
 ```
+
 ```{r}
 #get the title for the 3rd movie
 get3rdtitle <- submovie[3]
@@ -305,7 +308,9 @@ movie3df <- data.frame(Movie_title = get3rdtitle,
                        TitleReview = reviewsplit3
                        )
 movie3df
+write.csv(movie3df, "Movie3.csv")
 ```
+
 ```{r}
 #get the title for the 4th movie
 get4thtitle <- submovie[4]
@@ -374,7 +379,9 @@ movie4df <- data.frame(Movie_title = get4thtitle,
                        TitleReview = reviewsplit4
                        )
 movie4df
+write.csv(movie4df, "Movie4.csv")
 ```
+
 ```{r}
 #get the title for the 5th movie
 get5thtitle <- submovie[5]
@@ -443,7 +450,9 @@ movie5df <- data.frame(Movie_title = get5thtitle,
                        TitleReview = reviewsplit5
                        )
 movie5df
+write.csv(movie5df, "Movie5.csv")
 ```
+
 ```{r}
 #get the title for the 6th movie
 get6thtitle <- submovie[6]
@@ -514,7 +523,9 @@ movie6df <- data.frame(Movie_title = get6thtitle,
                        TitleReview = review6clean
                        )
 movie6df
+write.csv(movie6df, "Movie6.csv")
 ```
+
 ```{r}
 #get the title for the 5th movie
 get7thtitle <- submovie[7]
@@ -583,7 +594,9 @@ movie7df <- data.frame(Movie_title = get7thtitle,
                        TitleReview = reviewsplit7
                        )
 movie7df
+write.csv(movie7df, "Movie7.csv")
 ```
+
 ```{r}
 #get the title for the 8th movie
 get8thtitle <- submovie[8]
@@ -657,7 +670,9 @@ movie8df <- data.frame(Movie_title = get8thtitle,
                        TitleReview = cleanreview8
                        )
 movie8df
+write.csv(movie8df, "Movie8.csv")
 ```
+
 ```{r}
 #get the title for the 8th movie
 get9thtitle <- submovie[9]
@@ -726,7 +741,9 @@ movie9df <- data.frame(Movie_title = get9thtitle,
                        TitleReview = reviewsplit9
                        )
 movie9df
+write.csv(movie9df, "Movie9.csv")
 ```
+
 ```{r}
 #get the title for the 8th movie
 get10thtitle <- submovie[10]
@@ -803,6 +820,7 @@ movie10df <- data.frame(Movie_title = get10thtitle,
                        TitleReview = cleanreview10
                        )
 movie10df
+write.csv(movie10df, "Movie10.csv")
 ```
 
 ```{r}
@@ -825,10 +843,37 @@ write.csv(moviesdf, "IMDBmovies.csv")
 read.csv("IMDBmovies.csv")
 ```
 
+```{r}
+library(DBI)
+library(odbc)
+library(RMySQL)
+library(dplyr,dbplyr)
 
+#creating connections
+connection <- dbConnect(RMySQL::MySQL(),
+                        dsn="MariaDB-connection",
+                        Server = "labexercise3",
+                        dbname = "labexercise3",
+                        user = "root",
+                        password = "")
+```
+```{r}
+library(readr)
 
+imdbMovies <- read.csv("IMDBmovies.csv")
+```
 
+```{r}
+dbWriteTable(connection, 'movies', imdbMovies[1:100, ], append = TRUE)
 
+head(dbReadTable(connection, 'movies'))
+```
 
+```{r}
 
+dbListTables(connection, 'movies',imdbMovies, append = TRUE)
+#read and write data from database
+data <- dbGetQuery(connection, "SELECT * FROM movies")
+glimpse(data)
 
+```
