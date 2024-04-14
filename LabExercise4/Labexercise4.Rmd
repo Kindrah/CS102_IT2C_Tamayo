@@ -1,0 +1,122 @@
+---
+title: "lab4"
+output: html_document
+date: "2024-03-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+libraries
+```{r}
+library(dplyr)
+library(stringr)
+library(httr)
+library(rvest)
+```
+
+```{r}
+begin <- proc.time()
+
+Title <- Author <- Subject <- Abstract <- Meta <- vector("character")
+
+URLlink <- 'https://arxiv.org/search/?query=Data+analysis&searchtype=all&source=header'
+pages <- seq(from = 0, to = 100, by = 50)
+
+for(page in pages) {
+ 
+  pasteurl <- paste0(URLlink, page)
+
+  articlescrapes <- read_html(pasteurl) %>%
+    html_nodes('p.list-title.is-inline-block') %>%
+    html_nodes('a[href^="https://arxiv.org/abs"]') %>%
+    html_attr('href')
+ 
+ 
+  for(articlescrape in articlescrapes) {
+ 
+    articlepage <- read_html(articlescrape)
+
+   
+    titlearticle <- articlepage %>% html_nodes('h1.title.mathjax') %>% html_text(TRUE)
+    titlearticle <- gsub('Title:', '', titlearticle)
+    Title <- c(Title, titlearticle)
+   
+   
+    authorarticle <- articlepage %>% html_nodes('div.authors') %>% html_text(TRUE)
+    authorarticle <- gsub('Authors:','',authorarticle)
+    Author <- c(Author, authorarticle)
+   
+
+    subjectarticle <- articlepage %>% html_nodes('span.primary-subject') %>% html_text(TRUE)
+    Subject <- c(Subject, subjectarticle)
+   
+ 
+    abstractarticle <- articlepage %>% html_nodes('blockquote.abstract.mathjax') %>% html_text(TRUE)
+    abstractarticle <- sub('Abstract:','',abstractarticle)
+    Abstract <- c(Abstract, abstractarticle)
+   
+ 
+    articlemeta <- articlepage %>% html_nodes('div.submission-history') %>% html_text(TRUE)
+    articlemeta <- gsub('\\s+', ' ',articlemeta)
+    articlemeta <- strsplit(articlemeta, '[v1]', fixed = T)
+    articlemeta <- articlemeta[[1]][2] %>% unlist %>% str_trim
+    Meta <- c(Meta, articlemeta)
+   
+   
+   cat("article:", length(Title), "\n")
+    Sys.sleep(1)
+  }
+}
+
+papers <- data.frame(Title, Author, Subject, Abstract, Meta)
+papers
+
+end <- proc.time()
+end - begin
+
+save(paper, file = "ArxivArticle.RData")
+write.csv(paper, file = "ArxivArticles.csv")
+```
+
+```{r}
+library(DBI)
+library(odbc)
+library(RMySQL)
+library(dplyr,dbplyr)
+
+connection <- dbConnect(RMySQL::MySQL(),
+                        dsn="MariaDB-connection",
+                        Server = "arxiv_articles",
+                        dbname = "arxiv_articles",
+                        user = "root",
+                        password = "")
+```
+
+
+```{r}
+library(readr)
+
+ArxivArticles <- read.csv("ArxivArticles.csv")
+head(ArxivArticles)
+```
+```{r}
+dbWriteTable(connection, 'Articles', ArxivArticles, append = TRUE)
+```
+
+```{r}
+dbListTables(connection)
+dbListFields(connection, 'Articles')
+```
+
+```{r}
+data <- dbGetQuery(connection, "SELECT * FROM arxiv_articles.Articles")
+glimpse(data)
+```
+
+
+
+
+
+
+
