@@ -9209,7 +9209,7 @@ reviewername35_3 <- url35_3 %>%
   html_text()
 
 # Subset the 5th page reviewer to get only the 10 reviewers
-subsetreviewername35_3 <- reviewername35_3[3:15]
+subsetreviewername35_3 <- reviewername35_3[3:17]
 subsetreviewername35_3 <- subsetreviewername35_3[1:10]
 
 # Get the star ratings of the reviewer
@@ -9260,7 +9260,7 @@ reviewername35_4 <- url35_4 %>%
   html_text()
 
 # Subset the 5th page reviewer to get only the 10 reviewers
-subsetreviewername35_4 <- reviewername35_4[3:15]
+subsetreviewername35_4 <- reviewername35_4[3:14]
 subsetreviewername35_4 <- subsetreviewername35_4[1:10]
 
 # Get the star ratings of the reviewer
@@ -9310,7 +9310,7 @@ reviewername35_5 <- url35_5 %>%
   html_text()
 
 # Subset the 5th page reviewer to get only the 10 reviewers
-subsetreviewername35_5 <- reviewername35_5[3:14]
+subsetreviewername35_5 <- reviewername35_5[3:16]
 subsetreviewername35_5 <- subsetreviewername35_5[1:10]
 
 # Get the star ratings of the reviewer
@@ -9386,7 +9386,7 @@ reviewername36_1 <- url36_1 %>%
   html_text()
 
 # Subset the 1st page reviewer to get only the 10 reviewers
-subsetreviewername36_1 <- reviewername36_1[3:16]
+subsetreviewername36_1 <- reviewername36_1[3:17]
 subsetreviewername36_1 <- subsetreviewername36_1[1:10]
 
 # Get the star ratings of the reviewer
@@ -9436,7 +9436,7 @@ reviewername36_2 <- url36_2 %>%
   html_text()
 
 # Subset the 2nd page reviewer to get only the 10 reviewers
-subsetreviewername36_2 <- reviewername36_2[3:16]
+subsetreviewername36_2 <- reviewername36_2[3:14]
 subsetreviewername36_2 <- subsetreviewername36_2[1:10]
 
 # Get the star ratings of the reviewer
@@ -9536,7 +9536,7 @@ reviewername36_4 <- url36_4 %>%
   html_text()
 
 # Subset the 5th page reviewer to get only the 10 reviewers
-subsetreviewername36_4 <- reviewername36_4[3:15]
+subsetreviewername36_4 <- reviewername36_4[3:14]
 subsetreviewername36_4 <- subsetreviewername36_4[1:10]
 
 # Get the star ratings of the reviewer
@@ -9586,7 +9586,7 @@ reviewername36_5 <- url36_5 %>%
   html_text()
 
 # Subset the 5th page reviewer to get only the 10 reviewers
-subsetreviewername36_5 <- reviewername36_5[3:13]
+subsetreviewername36_5 <- reviewername36_5[3:14]
 subsetreviewername36_5 <- subsetreviewername36_5[1:10]
 
 # Get the star ratings of the reviewer
@@ -9655,7 +9655,7 @@ reviewername37_1 <- url37_1 %>%
   html_text()
 
 # Subset the 1st page reviewer to get only the 10 reviewers
-subsetreviewername37_1 <- reviewername37_1[3:15]
+subsetreviewername37_1 <- reviewername37_1[3:14]
 subsetreviewername37_1 <- subsetreviewername37_1[1:10]
 
 # Get the star ratings of the reviewer
@@ -9709,8 +9709,7 @@ reviewername37_2 <- url37_2 %>%
   html_text()
 
 # Subset the 1st page reviewer to get only the 10 reviewers
-subsetreviewername37_2 <- reviewername37_2[3:15]
-subsetreviewername37_2 <- subsetreviewername37_2[1:10]
+subsetreviewername37_2 <- reviewername37_2[3:12]
 
 # Get the star ratings of the reviewer
 starreview37_2 <- url37_2 %>% 
@@ -9808,7 +9807,7 @@ reviewername37_4 <- url37_4 %>%
   html_text()
 
 # Subset the 1st page reviewer to get only the 10 reviewers
-subsetreviewername37_4 <- reviewername37_4[3:13]
+subsetreviewername37_4 <- reviewername37_4[3:14]
 subsetreviewername37_4 <- subsetreviewername37_4[1:10]
 
 # Get the star ratings of the reviewer
@@ -9930,7 +9929,7 @@ reviewername38_1 <- url38_1 %>%
   html_text()
 
 # Subset the 1st page reviewer to get only the 10 reviewers
-subsetreviewername38_1 <- reviewername38_1[3:15]
+subsetreviewername38_1 <- reviewername38_1[3:13]
 subsetreviewername38_1 <- subsetreviewername38_1[1:10]
 
 # Get the star ratings of the reviewer
@@ -9974,11 +9973,99 @@ url38_2 <- read_html(urlprod38_2)
 ```
 
 ```{r}
+# Get the reviewer's name
+reviewername38_2 <- url38_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername38_2 <- reviewername38_2[3:13]
+subsetreviewername38_2 <- subsetreviewername38_2[1:10]
+
+# Get the star ratings of the reviewer
+starreview38_2 <- url38_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit38_2 <- str_extract(starreview38_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles38_2 <- lapply(starreview38_2, function(revtitle38_2) {
+  revtitle38_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle38_2)
+  revtitle38_2 <- trimws(revtitle38_2)
+  return(revtitle38_2)
+})
+
+# Get the date of the review
+dateofreview38_2 <- url38_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview38_2 <- str_extract(dateofreview38_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate38_2 <- splitdatereview38_2[3:12]
+
+# Get the content of the review
+textreview38_2 <- url38_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
 urlprod38_3 <- "https://www.amazon.com/PlayStation-DualSense%C2%AE-Wireless-Controller-Midnight-5/product-reviews/B0CQKKHT5J/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
 
 session38_3 <- bow(urlprod38_3 , user_agent = "educational purposes")
 url38_3 <- read_html(urlprod38_3)
 ```
+
+```{r}
+# Get the reviewer's name
+reviewername38_3 <- url38_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername38_3 <- reviewername38_3[3:14]
+subsetreviewername38_3 <- subsetreviewername38_3[1:10]
+
+# Get the star ratings of the reviewer
+starreview38_3 <- url38_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit38_3 <- str_extract(starreview38_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles38_3 <- lapply(starreview38_3, function(revtitle38_3) {
+  revtitle38_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle38_3)
+  revtitle38_3 <- trimws(revtitle38_3)
+  return(revtitle38_3)
+})
+
+# Get the date of the review
+dateofreview38_3 <- url38_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview38_3 <- str_extract(dateofreview38_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate38_3 <- splitdatereview38_3[3:12]
+
+# Get the content of the review
+textreview38_3 <- url38_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
 
 ```{r}
 urlprod38_4 <- "https://www.amazon.com/PlayStation-DualSense%C2%AE-Wireless-Controller-Midnight-5/product-reviews/B0CQKKHT5J/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
@@ -9988,25 +10075,3371 @@ url38_4 <- read_html(urlprod38_4)
 ```
 
 ```{r}
+# Get the reviewer's name
+reviewername38_4 <- url38_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername38_4 <- reviewername38_4[3:13]
+subsetreviewername38_4 <- subsetreviewername38_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview38_4 <- url38_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit38_4 <- str_extract(starreview38_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles38_4 <- lapply(starreview38_4, function(revtitle38_4) {
+  revtitle38_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle38_4)
+  revtitle38_4 <- trimws(revtitle38_4)
+  return(revtitle38_4)
+})
+
+# Get the date of the review
+dateofreview38_4 <- url38_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview38_4 <- str_extract(dateofreview38_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate38_4 <- splitdatereview38_4[3:12]
+
+# Get the content of the review
+textreview38_4 <- url38_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
 urlprod38_5 <- "https://www.amazon.com/PlayStation-DualSense%C2%AE-Wireless-Controller-Midnight-5/product-reviews/B0CQKKHT5J/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
 
 session38_5 <- bow(urlprod38_5 , user_agent = "educational purposes")
 url38_5 <- read_html(urlprod38_5)
 ```
 
+```{r}
+# Get the reviewer's name
+reviewername38_5 <- url38_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername38_5 <- reviewername38_5[3:13]
+subsetreviewername38_5 <- subsetreviewername38_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview38_5 <- url38_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit38_5 <- str_extract(starreview38_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles38_5 <- lapply(starreview38_5, function(revtitle38_5) {
+  revtitle38_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle38_5)
+  revtitle38_5 <- trimws(revtitle38_5)
+  return(revtitle38_5)
+})
+
+# Get the date of the review
+dateofreview38_5 <- url38_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview38_5 <- str_extract(dateofreview38_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate38_5 <- splitdatereview38_5[3:12]
+
+# Get the content of the review
+textreview38_5 <- url38_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers38 <- c(subsetreviewername38_1,subsetreviewername38_2,subsetreviewername38_3,subsetreviewername38_4, subsetreviewername38_5)
+
+combinedstars38 <- c(starsplit38_1,starsplit38_2, starsplit38_3, starsplit38_4, starsplit38_5)
+
+combineddate38 <- c(subsetdate38_1, subsetdate38_2, subsetdate38_3, subsetdate38_4, subsetdate38_5)
+
+combinedtext38 <- c(textreview38_1, textreview38_2, textreview38_3, textreview38_4, textreview38_5)
+
+product38df <- data.frame( ProductName = productname38,
+                          reviewers = combinedreviewers38,
+                          star_rates = combinedstars38,
+                         date_of_review = combineddate38,
+                         text_review = combinedtext38)
+product38df
+write.csv(product38df, "38Product.csv")
+```
+
+```{r}
+urlprod39_1 <- "https://www.amazon.com/MSI-Force-Controller-Connection-Interchangable/product-reviews/B09PFBX39L/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session39_1 <- bow(urlprod39_1, user_agent = "educational purposes")
+url39_1 <- read_html(urlprod39_1)
+
+```
+
+```{r}
+productname39 <- url39_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername39_1 <- url39_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername39_1 <- reviewername39_1[3:14]
+subsetreviewername39_1 <- subsetreviewername39_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview39_1 <- url39_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit39_1 <- str_extract(starreview39_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles39_1 <- lapply(starreview39_1, function(revtitle39_1) {
+  revtitle39_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle39_1)
+  revtitle39_1 <- trimws(revtitle39_1)
+  return(revtitle39_1)
+})
+
+# Get the date of the review
+dateofreview39_1 <- url39_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview39_1 <- str_extract(dateofreview39_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate39_1 <- splitdatereview39_1[3:12]
+
+# Get the content of the review
+textreview39_1 <- url39_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
 
 
+```{r}
+urlprod39_2 <- "https://www.amazon.com/MSI-Force-Controller-Connection-Interchangable/product-reviews/B09PFBX39L/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session39_2 <- bow(urlprod39_2, user_agent = "educational purposes")
+url39_2 <- read_html(urlprod39_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername39_2 <- url39_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername39_2 <- reviewername39_2[3:12]
+
+# Get the star ratings of the reviewer
+starreview39_2 <- url39_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit39_2 <- str_extract(starreview39_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles39_2 <- lapply(starreview39_2, function(revtitle39_2) {
+  revtitle39_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle39_2)
+  revtitle39_2 <- trimws(revtitle39_2)
+  return(revtitle39_2)
+})
+
+# Get the date of the review
+dateofreview39_2 <- url39_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview39_2 <- str_extract(dateofreview39_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate39_2 <- splitdatereview39_2[3:12]
+
+# Get the content of the review
+textreview39_2 <- url39_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+```
+
+```{r}
+urlprod39_3 <- "https://www.amazon.com/MSI-Force-Controller-Connection-Interchangable/product-reviews/B09PFBX39L/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session39_3 <- bow(urlprod39_3, user_agent = "educational purposes")
+url39_3 <- read_html(urlprod39_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername39_3 <- url39_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername39_3 <- reviewername39_3[3:12]
+
+# Get the star ratings of the reviewer
+starreview39_3 <- url39_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit39_3 <- str_extract(starreview39_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles39_3 <- lapply(starreview39_3, function(revtitle39_3) {
+  revtitle39_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle39_3)
+  revtitle39_3 <- trimws(revtitle39_3)
+  return(revtitle39_3)
+})
+
+# Get the date of the review
+dateofreview39_3 <- url39_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview39_3 <- str_extract(dateofreview39_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate39_3 <- splitdatereview39_3[3:12]
+
+# Get the content of the review
+textreview39_3 <- url39_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
 
 
+```{r}
+urlprod39_4 <- "https://www.amazon.com/MSI-Force-Controller-Connection-Interchangable/product-reviews/B09PFBX39L/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session39_4 <- bow(urlprod39_4, user_agent = "educational purposes")
+url39_4 <- read_html(urlprod39_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername39_4 <- url39_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername39_4 <- reviewername39_4[3:13]
+subsetreviewername39_4 <- subsetreviewername39_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview39_4 <- url39_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit39_4 <- str_extract(starreview39_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles39_4 <- lapply(starreview39_4, function(revtitle39_4) {
+  revtitle39_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle39_4)
+  revtitle39_4 <- trimws(revtitle39_4)
+  return(revtitle39_4)
+})
+
+# Get the date of the review
+dateofreview39_4 <- url39_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview39_4 <- str_extract(dateofreview39_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate39_4 <- splitdatereview39_4[3:12]
+
+# Get the content of the review
+textreview39_4 <- url39_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod39_5 <- "https://www.amazon.com/MSI-Force-Controller-Connection-Interchangable/product-reviews/B09PFBX39L/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session39_5 <- bow(urlprod39_5, user_agent = "educational purposes")
+url39_5 <- read_html(urlprod39_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername39_5 <- url39_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername39_5 <- reviewername39_5[3:13]
+subsetreviewername39_5 <- subsetreviewername39_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview39_5 <- url39_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit39_5 <- str_extract(starreview39_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles39_5 <- lapply(starreview39_5, function(revtitle39_5) {
+  revtitle39_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle39_5)
+  revtitle39_5 <- trimws(revtitle39_5)
+  return(revtitle39_5)
+})
+
+# Get the date of the review
+dateofreview39_5 <- url39_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview39_5 <- str_extract(dateofreview39_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate39_5 <- splitdatereview39_5[3:12]
+
+# Get the content of the review
+textreview39_5 <- url39_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers39 <- c(subsetreviewername39_1,subsetreviewername39_2,subsetreviewername39_3,subsetreviewername39_4, subsetreviewername39_5)
+
+combinedstars39 <- c(starsplit39_1,starsplit39_2, starsplit39_3, starsplit39_4, starsplit39_5)
+
+combineddate39 <- c(subsetdate39_1, subsetdate39_2, subsetdate39_3, subsetdate39_4, subsetdate39_5)
+
+combinedtext39 <- c(textreview39_1, textreview39_2, textreview39_3, textreview39_4, textreview39_5)
+
+product39df <- data.frame( ProductName = productname39,
+                          reviewers = combinedreviewers39,
+                          star_rates = combinedstars39,
+                         date_of_review = combineddate39,
+                         text_review = combinedtext39)
+product39df
+write.csv(product39df, "39Product.csv")
+```
+
+```{r}
+urlprod40_1 <- "https://www.amazon.com/Super-Mario-Bros-TM-Wonder-Nintendo-Version/product-reviews/B0C8VHZR14/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session40_1 <- bow(urlprod40_1, user_agent = "educational purposes")
+url40_1 <- read_html(urlprod40_1)
+```
+
+```{r}
+productname40 <- url40_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername40_1 <- url40_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername40_1 <- reviewername40_1[3:12]
+
+# Get the star ratings of the reviewer
+starreview40_1 <- url40_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit40_1 <- str_extract(starreview40_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles40_1 <- lapply(starreview40_1, function(revtitle40_1) {
+  revtitle40_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle40_1)
+  revtitle40_1 <- trimws(revtitle40_1)
+  return(revtitle40_1)
+})
+
+# Get the date of the review
+dateofreview40_1 <- url40_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview40_1 <- str_extract(dateofreview40_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate40_1 <- splitdatereview40_1[3:12]
+
+# Get the content of the review
+textreview40_1 <- url40_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
 
 
+```{r}
+urlprod40_2 <- "https://www.amazon.com/Super-Mario-Bros-TM-Wonder-Nintendo-Version/product-reviews/B0C8VHZR14/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session40_2 <- bow(urlprod40_2, user_agent = "educational purposes")
+url40_2 <- read_html(urlprod40_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername40_2 <- url40_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Get the star ratings of the reviewer
+starreview40_2 <- url40_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit40_2 <- str_extract(starreview40_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles40_2 <- lapply(starreview40_2, function(revtitle40_2) {
+  revtitle40_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle40_2)
+  revtitle40_2 <- trimws(revtitle40_2)
+  return(revtitle40_2)
+})
+
+# Get the date of the review
+dateofreview40_2 <- url40_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview40_2 <- str_extract(dateofreview40_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate40_2 <- splitdatereview40_2[3:12]
+
+# Get the content of the review
+textreview40_2 <- url40_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
 
 
+```{r}
+urlprod40_3 <- "https://www.amazon.com/Super-Mario-Bros-TM-Wonder-Nintendo-Version/product-reviews/B0C8VHZR14/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session40_3 <- bow(urlprod40_3, user_agent = "educational purposes")
+url40_3 <- read_html(urlprod40_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername40_3 <- url40_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Get the star ratings of the reviewer
+starreview40_3 <- url40_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit40_3 <- str_extract(starreview40_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles40_3 <- lapply(starreview40_3, function(revtitle40_3) {
+  revtitle40_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle40_3)
+  revtitle40_3 <- trimws(revtitle40_3)
+  return(revtitle40_3)
+})
+
+# Get the date of the review
+dateofreview40_3 <- url40_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview40_3 <- str_extract(dateofreview40_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate40_3 <- splitdatereview40_3[3:12]
+
+# Get the content of the review
+textreview40_3 <- url40_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
 
 
+```{r}
+urlprod40_4 <- "https://www.amazon.com/Super-Mario-Bros-TM-Wonder-Nintendo-Version/product-reviews/B0C8VHZR14/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session40_4 <- bow(urlprod40_4, user_agent = "educational purposes")
+url40_4 <- read_html(urlprod40_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername40_4 <- url40_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername40_4 <- reviewername40_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview40_4 <- url40_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit40_4 <- str_extract(starreview40_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles40_4 <- lapply(starreview40_4, function(revtitle40_4) {
+  revtitle40_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle40_4)
+  revtitle40_4 <- trimws(revtitle40_4)
+  return(revtitle40_4)
+})
+
+# Get the date of the review
+dateofreview40_4 <- url40_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview40_4 <- str_extract(dateofreview40_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate40_4 <- splitdatereview40_4[3:12]
+
+# Get the content of the review
+textreview40_4 <- url40_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
 
 
+```{r}
+urlprod40_5 <- "https://www.amazon.com/Super-Mario-Bros-TM-Wonder-Nintendo-Version/product-reviews/B0C8VHZR14/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
 
+session40_5 <- bow(urlprod40_5, user_agent = "educational purposes")
+url40_5 <- read_html(urlprod40_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername40_5 <- url40_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+
+# Get the star ratings of the reviewer
+starreview40_5 <- url40_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit40_5 <- str_extract(starreview40_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles40_5 <- lapply(starreview40_5, function(revtitle40_5) {
+  revtitle40_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle40_5)
+  revtitle40_5 <- trimws(revtitle40_5)
+  return(revtitle40_5)
+})
+
+# Get the date of the review
+dateofreview40_5 <- url40_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview40_5 <- str_extract(dateofreview40_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate40_5 <- splitdatereview40_5[3:12]
+
+# Get the content of the review
+textreview40_5 <- url40_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers40 <- c(subsetreviewername40_1,reviewername40_2,reviewername40_3,subsetreviewername40_4, reviewername40_5)
+
+combinedstars40 <- c(starsplit40_1,starsplit40_2, starsplit40_3, starsplit40_4, starsplit40_5)
+
+combineddate40 <- c(subsetdate40_1, subsetdate40_2, subsetdate40_3, subsetdate40_4, subsetdate40_5)
+
+combinedtext40 <- c(textreview40_1, textreview40_2, textreview40_3, textreview40_4, textreview40_5)
+
+product40df <- data.frame( ProductName = productname40,
+                          reviewers = combinedreviewers40,
+                          star_rates = combinedstars40,
+                         date_of_review = combineddate40,
+                         text_review = combinedtext40)
+product40df
+write.csv(product40df, "40Product.csv")
+```
+
+```{r}
+urlprod41_1 <- "https://www.amazon.com/Mechanical-Keyboard-MageGee-Backlit-Computer/product-reviews/B09M9HB4PV/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session41_1 <- bow(urlprod41_1, user_agent = "educational purposes")
+url41_1 <- read_html(urlprod41_1)
+```
+
+```{r}
+productname41 <- url41_1 %>%
+html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+
+# Get the reviewer's name
+reviewername41_1 <- url41_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername41_1 <- reviewername41_1[3:14]
+subsetreviewername41_1 <- subsetreviewername41_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview41_1 <- url41_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit41_1 <- str_extract(starreview41_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles41_1 <- lapply(starreview41_1, function(revtitle41_1) {
+  revtitle41_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle41_1)
+  revtitle41_1 <- trimws(revtitle41_1)
+  return(revtitle41_1)
+})
+
+# Get the date of the review
+dateofreview41_1 <- url41_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview41_1 <- str_extract(dateofreview41_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate41_1 <- splitdatereview41_1[3:12]
+
+# Get the content of the review
+textreview41_1 <- url41_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod41_2 <- "https://www.amazon.com/Mechanical-Keyboard-MageGee-Backlit-Computer/product-reviews/B09M9HB4PV/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+ 
+session41_2 <- bow(urlprod41_2, user_agent = "educational purposes")
+url41_2 <- read_html(urlprod41_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername41_2 <- url41_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername41_2 <- reviewername41_2[3:13]
+subsetreviewername41_2 <- subsetreviewername41_2[1:10]
+
+# Get the star ratings of the reviewer
+starreview41_2 <- url41_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit41_2 <- str_extract(starreview41_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles41_2 <- lapply(starreview41_2, function(revtitle41_2) {
+  revtitle41_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle41_2)
+  revtitle41_2 <- trimws(revtitle41_2)
+  return(revtitle41_2)
+})
+
+# Get the date of the review
+dateofreview41_2 <- url41_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview41_2 <- str_extract(dateofreview41_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate41_2 <- splitdatereview41_2[3:12]
+
+# Get the content of the review
+textreview41_2 <- url41_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod41_3 <- "https://www.amazon.com/Mechanical-Keyboard-MageGee-Backlit-Computer/product-reviews/B09M9HB4PV/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session41_3 <- bow(urlprod41_3, user_agent = "educational purposes")
+url41_3 <- read_html(urlprod41_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername41_3 <- url41_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername41_3 <- reviewername41_3[3:15]
+subsetreviewername41_3 <- subsetreviewername41_3[1:10]
+
+# Get the star ratings of the reviewer
+starreview41_3 <- url41_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit41_3 <- str_extract(starreview41_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles41_3 <- lapply(starreview41_3, function(revtitle41_3) {
+  revtitle41_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle41_3)
+  revtitle41_3 <- trimws(revtitle41_3)
+  return(revtitle41_3)
+})
+
+# Get the date of the review
+dateofreview41_3 <- url41_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview41_3 <- str_extract(dateofreview41_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate41_3 <- splitdatereview41_3[3:12]
+
+# Get the content of the review
+textreview41_3 <- url41_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod41_4 <- "https://www.amazon.com/Mechanical-Keyboard-MageGee-Backlit-Computer/product-reviews/B09M9HB4PV/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+session41_4 <- bow(urlprod41_4, user_agent = "educational purposes")
+url41_4 <- read_html(urlprod41_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername41_4 <- url41_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername41_4 <- reviewername41_4[3:15]
+subsetreviewername41_4 <- subsetreviewername41_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview41_4 <- url41_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit41_4 <- str_extract(starreview41_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles41_4 <- lapply(starreview41_4, function(revtitle41_4) {
+  revtitle41_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle41_4)
+  revtitle41_4 <- trimws(revtitle41_4)
+  return(revtitle41_4)
+})
+
+# Get the date of the review
+dateofreview41_4 <- url41_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview41_4 <- str_extract(dateofreview41_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate41_4 <- splitdatereview41_4[3:12]
+
+# Get the content of the review
+textreview41_4 <- url41_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod41_5 <- "https://www.amazon.com/Mechanical-Keyboard-MageGee-Backlit-Computer/product-reviews/B09M9HB4PV/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session41_5 <- bow(urlprod41_5, user_agent = "educational purposes")
+url41_5 <- read_html(urlprod41_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername41_5 <- url41_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername41_5 <- reviewername41_5[3:12]
+
+# Get the star ratings of the reviewer
+starreview41_5 <- url41_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit41_5 <- str_extract(starreview41_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles41_5 <- lapply(starreview41_5, function(revtitle41_5) {
+  revtitle41_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle41_5)
+  revtitle41_5 <- trimws(revtitle41_5)
+  return(revtitle41_5)
+})
+
+# Get the date of the review
+dateofreview41_5 <- url41_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview41_5 <- str_extract(dateofreview41_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate41_5 <- splitdatereview41_5[3:12]
+
+# Get the content of the review
+textreview41_5 <- url41_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers41 <- c(subsetreviewername41_1,subsetreviewername41_2,subsetreviewername41_3,subsetreviewername41_4, subsetreviewername41_5)
+
+combinedstars41 <- c(starsplit41_1,starsplit41_2, starsplit41_3, starsplit41_4, starsplit41_5)
+
+combineddate41 <- c(subsetdate41_1, subsetdate41_2, subsetdate41_3, subsetdate41_4, subsetdate41_5)
+
+combinedtext41 <- c(textreview41_1, textreview41_2, textreview41_3, textreview41_4, textreview41_5)
+
+product41df <- data.frame( ProductName = productname41,
+                          reviewers = combinedreviewers41,
+                          star_rates = combinedstars41,
+                         date_of_review = combineddate41,
+                         text_review = combinedtext41)
+product41df
+write.csv(product41df, "41Product.csv")
+```
+
+```{r}
+urlprod42_1 <- "https://www.amazon.com/SteelSeries-Apex-Gaming-Keyboard-Anti-Ghosting/product-reviews/B09FTNMT84/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session42_1 <- bow(urlprod42_1, user_agent = "educational purposes")
+url42_1 <- read_html(urlprod42_1)
+```
+
+```{r}
+productname42 <- url42_1 %>%
+ html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+
+# Get the reviewer's name
+reviewername42_1 <- url42_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername42_1 <- reviewername42_1[3:13]
+subsetreviewername42_1 <- subsetreviewername42_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview42_1 <- url42_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit42_1 <- str_extract(starreview42_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles42_1 <- lapply(starreview42_1, function(revtitle42_1) {
+  revtitle42_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle42_1)
+  revtitle42_1 <- trimws(revtitle42_1)
+  return(revtitle42_1)
+})
+
+# Get the date of the review
+dateofreview42_1 <- url42_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview42_1 <- str_extract(dateofreview42_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate42_1 <- splitdatereview42_1[3:12]
+
+# Get the content of the review
+textreview42_1 <- url42_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod42_2 <- "https://www.amazon.com/SteelSeries-Apex-Gaming-Keyboard-Anti-Ghosting/product-reviews/B09FTNMT84/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session42_2 <- bow(urlprod42_2, user_agent = "educational purposes")
+url42_2 <- read_html(urlprod42_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername42_2 <- url42_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername42_2 <- reviewername42_2[3:14]
+subsetreviewername42_2 <- subsetreviewername42_2[1:10]
+
+# Get the star ratings of the reviewer
+starreview42_2 <- url42_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit42_2 <- str_extract(starreview42_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles42_2 <- lapply(starreview42_2, function(revtitle42_2) {
+  revtitle42_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle42_2)
+  revtitle42_2 <- trimws(revtitle42_2)
+  return(revtitle42_2)
+})
+
+# Get the date of the review
+dateofreview42_2 <- url42_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview42_2 <- str_extract(dateofreview42_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate42_2 <- splitdatereview42_2[3:12]
+
+# Get the content of the review
+textreview42_2 <- url42_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod42_3 <- "https://www.amazon.com/SteelSeries-Apex-Gaming-Keyboard-Anti-Ghosting/product-reviews/B09FTNMT84/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+session42_3 <- bow(urlprod42_3, user_agent = "educational purposes")
+url42_3 <- read_html(urlprod42_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername42_3 <- url42_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername42_3 <- reviewername42_3[3:16]
+subsetreviewername42_3 <- subsetreviewername42_3[1:10]
+
+# Get the star ratings of the reviewer
+starreview42_3 <- url42_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit42_3 <- str_extract(starreview42_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles42_3 <- lapply(starreview42_3, function(revtitle42_3) {
+  revtitle42_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle42_3)
+  revtitle42_3 <- trimws(revtitle42_3)
+  return(revtitle42_3)
+})
+
+# Get the date of the review
+dateofreview42_3 <- url42_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview42_3 <- str_extract(dateofreview42_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate42_3 <- splitdatereview42_3[3:12]
+
+# Get the content of the review
+textreview42_3 <- url42_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod42_4 <- "https://www.amazon.com/SteelSeries-Apex-Gaming-Keyboard-Anti-Ghosting/product-reviews/B09FTNMT84/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session42_4 <- bow(urlprod42_4, user_agent = "educational purposes")
+url42_4 <- read_html(urlprod42_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername42_4 <- url42_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername42_4 <- reviewername42_4[3:14]
+subsetreviewername42_4 <- subsetreviewername42_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview42_4 <- url42_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit42_4 <- str_extract(starreview42_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles42_4 <- lapply(starreview42_4, function(revtitle42_4) {
+  revtitle42_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle42_4)
+  revtitle42_4 <- trimws(revtitle42_4)
+  return(revtitle42_4)
+})
+
+# Get the date of the review
+dateofreview42_4 <- url42_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview42_4 <- str_extract(dateofreview42_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate42_4 <- splitdatereview42_4[3:12]
+
+# Get the content of the review
+textreview42_4 <- url42_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod42_5 <- "https://www.amazon.com/SteelSeries-Apex-Gaming-Keyboard-Anti-Ghosting/product-reviews/B09FTNMT84/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session42_5 <- bow(urlprod42_5, user_agent = "educational purposes")
+url42_5 <- read_html(urlprod42_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername42_5 <- url42_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername42_5 <- reviewername42_5[3:13]
+subsetreviewername42_5 <- subsetreviewername42_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview42_5 <- url42_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit42_5 <- str_extract(starreview42_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles42_5 <- lapply(starreview42_5, function(revtitle42_5) {
+  revtitle42_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle42_5)
+  revtitle42_5 <- trimws(revtitle42_5)
+  return(revtitle42_5)
+})
+
+# Get the date of the review
+dateofreview42_5 <- url42_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview42_5 <- str_extract(dateofreview42_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate42_5 <- splitdatereview42_5[3:12]
+
+# Get the content of the review
+textreview42_5 <- url42_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers42 <- c(subsetreviewername42_1,subsetreviewername42_2,subsetreviewername42_3,subsetreviewername42_4, subsetreviewername42_5)
+
+combinedstars42 <- c(starsplit42_1,starsplit42_2, starsplit42_3, starsplit42_4, starsplit42_5)
+
+combineddate42 <- c(subsetdate42_1, subsetdate42_2, subsetdate42_3, subsetdate42_4, subsetdate42_5)
+
+combinedtext42 <- c(textreview42_1, textreview42_2, textreview42_3, textreview42_4, textreview42_5)
+
+product42df <- data.frame( ProductName = productname42,
+                          reviewers = combinedreviewers42,
+                          star_rates = combinedstars42,
+                         date_of_review = combineddate42,
+                         text_review = combinedtext42)
+product42df
+write.csv(product42df, "42Product.csv")
+```
+
+```{r}
+urlprod43_1 <- "https://www.amazon.com/Elebase-Upgraded-Connector-Chargers-Interface/product-reviews/B07LF72431/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session43_1 <- bow(urlprod43_1, user_agent = "educational purposes")
+url43_1 <- read_html(urlprod43_1)
+```
+
+```{r}
+productname43 <- url43_1 %>%
+   html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername43_1 <- url43_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername43_1 <- reviewername43_1[3:13]
+subsetreviewername43_1 <- subsetreviewername43_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview43_1 <- url43_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit43_1 <- str_extract(starreview43_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles43_1 <- lapply(starreview43_1, function(revtitle43_1) {
+  revtitle43_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle43_1)
+  revtitle43_1 <- trimws(revtitle43_1)
+  return(revtitle43_1)
+})
+
+# Get the date of the review
+dateofreview43_1 <- url43_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview43_1 <- str_extract(dateofreview43_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate43_1 <- splitdatereview43_1[3:12]
+
+# Get the content of the review
+textreview43_1 <- url43_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod43_2 <- "https://www.amazon.com/Elebase-Upgraded-Connector-Chargers-Interface/product-reviews/B07LF72431/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session43_2 <- bow(urlprod43_2, user_agent = "educational purposes")
+url43_2 <- read_html(urlprod43_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername43_2 <- url43_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername43_2 <- reviewername43_2[3:12]
+
+# Get the star ratings of the reviewer
+starreview43_2 <- url43_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit43_2 <- str_extract(starreview43_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles43_2 <- lapply(starreview43_2, function(revtitle43_2) {
+  revtitle43_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle43_2)
+  revtitle43_2 <- trimws(revtitle43_2)
+  return(revtitle43_2)
+})
+
+# Get the date of the review
+dateofreview43_2 <- url43_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview43_2 <- str_extract(dateofreview43_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate43_2 <- splitdatereview43_2[3:12]
+
+# Get the content of the review
+textreview43_2 <- url43_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod43_3 <- "https://www.amazon.com/Elebase-Upgraded-Connector-Chargers-Interface/product-reviews/B07LF72431/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session43_3 <- bow(urlprod43_3, user_agent = "educational purposes")
+url43_3 <- read_html(urlprod43_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername43_3 <- url43_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername43_3 <- reviewername43_3[3:12]
+
+# Get the star ratings of the reviewer
+starreview43_3 <- url43_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit43_3 <- str_extract(starreview43_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles43_3 <- lapply(starreview43_3, function(revtitle43_3) {
+  revtitle43_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle43_3)
+  revtitle43_3 <- trimws(revtitle43_3)
+  return(revtitle43_3)
+})
+
+# Get the date of the review
+dateofreview43_3 <- url43_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview43_3 <- str_extract(dateofreview43_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate43_3 <- splitdatereview43_3[3:12]
+
+# Get the content of the review
+textreview43_3 <- url43_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod43_4 <- "https://www.amazon.com/Elebase-Upgraded-Connector-Chargers-Interface/product-reviews/B07LF72431/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session43_4 <- bow(urlprod43_4, user_agent  = "educational purposes")
+url43_4 <- read_html(urlprod43_4)
+```
+
+
+```{r}
+# Get the reviewer's name
+reviewername43_4 <- url43_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername43_4 <- reviewername43_4[3:12]
+
+# Get the star ratings of the reviewer
+starreview43_4 <- url43_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit43_4 <- str_extract(starreview43_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles43_4 <- lapply(starreview43_4, function(revtitle43_4) {
+  revtitle43_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle43_4)
+  revtitle43_4 <- trimws(revtitle43_4)
+  return(revtitle43_4)
+})
+
+# Get the date of the review
+dateofreview43_4 <- url43_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview43_4 <- str_extract(dateofreview43_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate43_4 <- splitdatereview43_4[3:12]
+
+# Get the content of the review
+textreview43_4 <- url43_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod43_5 <- "https://www.amazon.com/Elebase-Upgraded-Connector-Chargers-Interface/product-reviews/B07LF72431/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session43_5 <- bow(urlprod43_5, user_agent = "educational purposes")
+url43_5 <- read_html(urlprod43_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername43_5 <- url43_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername43_5 <- reviewername43_5[3:12]
+
+# Get the star ratings of the reviewer
+starreview43_5 <- url43_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit43_5 <- str_extract(starreview43_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles43_5 <- lapply(starreview43_5, function(revtitle43_5) {
+  revtitle43_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle43_5)
+  revtitle43_5 <- trimws(revtitle43_5)
+  return(revtitle43_5)
+})
+
+# Get the date of the review
+dateofreview43_5 <- url43_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview43_5 <- str_extract(dateofreview43_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate43_5 <- splitdatereview43_5[3:12]
+
+# Get the content of the review
+textreview43_5 <- url43_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers43 <- c(subsetreviewername43_1,subsetreviewername43_2,subsetreviewername43_3,subsetreviewername43_4, subsetreviewername43_5)
+
+combinedstars43 <- c(starsplit43_1,starsplit43_2, starsplit43_3, starsplit43_4, starsplit43_5)
+
+combineddate43 <- c(subsetdate43_1, subsetdate43_2, subsetdate43_3, subsetdate43_4, subsetdate43_5)
+
+combinedtext43 <- c(textreview43_1, textreview43_2, textreview43_3, textreview43_4, textreview43_5)
+
+product43df <- data.frame( ProductName = productname43,
+                          reviewers = combinedreviewers43,
+                          star_rates = combinedstars43,
+                         date_of_review = combineddate43,
+                         text_review = combinedtext43)
+product43df
+write.csv(product43df, "43Product.csv")
+```
+
+```{r}
+urlprod44_1 <- "https://www.amazon.com/Charger-LUOATIP-Adapter-Charging-Replacement/product-reviews/B07TK6MPNB/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session44_1 <- bow(urlprod44_1, user_agent = "educational purposes")
+url44_1 <- read_html(urlprod44_1)
+```
+
+```{r}
+productname44 <- url44_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername44_1 <- url44_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername44_1 <- reviewername44_1[3:13]
+subsetreviewername44_1 <- subsetreviewername44_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview44_1 <- url44_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit44_1 <- str_extract(starreview44_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles44_1 <- lapply(starreview44_1, function(revtitle44_1) {
+  revtitle44_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle44_1)
+  revtitle44_1 <- trimws(revtitle44_1)
+  return(revtitle44_1)
+})
+
+# Get the date of the review
+dateofreview44_1 <- url44_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview44_1 <- str_extract(dateofreview44_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate44_1 <- splitdatereview44_1[3:12]
+
+# Get the content of the review
+textreview44_1 <- url44_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod44_2 <- "https://www.amazon.com/Charger-LUOATIP-Adapter-Charging-Replacement/product-reviews/B07TK6MPNB/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session44_2 <- bow(urlprod44_2, user_agent = "educational purposes")
+url44_2 <- read_html(urlprod44_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername44_2 <- url44_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername44_2 <- reviewername44_2[3:12]
+
+# Get the star ratings of the reviewer
+starreview44_2 <- url44_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit44_2 <- str_extract(starreview44_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles44_2 <- lapply(starreview44_2, function(revtitle44_2) {
+  revtitle44_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle44_2)
+  revtitle44_2 <- trimws(revtitle44_2)
+  return(revtitle44_2)
+})
+
+# Get the date of the review
+dateofreview44_2 <- url44_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview44_2 <- str_extract(dateofreview44_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate44_2 <- splitdatereview44_2[3:12]
+
+# Get the content of the review
+textreview44_2 <- url44_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod44_3 <- "https://www.amazon.com/Charger-LUOATIP-Adapter-Charging-Replacement/product-reviews/B07TK6MPNB/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session44_3 <- bow(urlprod44_3, user_agent = "educational purposes")
+url44_3 <- read_html(urlprod44_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername44_3 <- url44_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername44_3 <- reviewername44_3[3:12]
+
+# Get the star ratings of the reviewer
+starreview44_3 <- url44_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit44_3 <- str_extract(starreview44_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles44_3 <- lapply(starreview44_3, function(revtitle44_3) {
+  revtitle44_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle44_3)
+  revtitle44_3 <- trimws(revtitle44_3)
+  return(revtitle44_3)
+})
+
+# Get the date of the review
+dateofreview44_3 <- url44_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview44_3 <- str_extract(dateofreview44_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate44_3 <- splitdatereview44_3[3:12]
+
+# Get the content of the review
+textreview44_3 <- url44_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod44_4 <- "https://www.amazon.com/Charger-LUOATIP-Adapter-Charging-Replacement/product-reviews/B07TK6MPNB/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session44_4 <- bow(urlprod44_4, user_agent = "educational purposes")
+url44_4 <- read_html(urlprod44_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername44_4 <- url44_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername44_4 <- reviewername44_4[3:13]
+subsetreviewername44_4 <- subsetreviewername44_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview44_4 <- url44_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit44_4 <- str_extract(starreview44_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles44_4 <- lapply(starreview44_4, function(revtitle44_4) {
+  revtitle44_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle44_4)
+  revtitle44_4 <- trimws(revtitle44_4)
+  return(revtitle44_4)
+})
+
+# Get the date of the review
+dateofreview44_4 <- url44_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview44_4 <- str_extract(dateofreview44_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate44_4 <- splitdatereview44_4[3:12]
+
+# Get the content of the review
+textreview44_4 <- url44_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod44_5 <- "https://www.amazon.com/Charger-LUOATIP-Adapter-Charging-Replacement/product-reviews/B07TK6MPNB/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session44_5 <- bow(urlprod44_5, user_agent = "educational purposes")
+url44_5 <- read_html(urlprod44_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername44_5 <- url44_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername44_5 <- reviewername44_5[3:12]
+
+# Get the star ratings of the reviewer
+starreview44_5 <- url44_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit44_5 <- str_extract(starreview44_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles44_5 <- lapply(starreview44_5, function(revtitle44_5) {
+  revtitle44_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle44_5)
+  revtitle44_5 <- trimws(revtitle44_5)
+  return(revtitle44_5)
+})
+
+# Get the date of the review
+dateofreview44_5 <- url44_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview44_5 <- str_extract(dateofreview44_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate44_5 <- splitdatereview44_5[3:12]
+
+# Get the content of the review
+textreview44_5 <- url44_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers44 <- c(subsetreviewername44_1,subsetreviewername44_2,subsetreviewername44_3,subsetreviewername44_4, subsetreviewername44_5)
+
+combinedstars44 <- c(starsplit44_1,starsplit44_2, starsplit44_3, starsplit44_4, starsplit44_5)
+
+combineddate44 <- c(subsetdate44_1, subsetdate44_2, subsetdate44_3, subsetdate44_4, subsetdate44_5)
+
+combinedtext44 <- c(textreview44_1, textreview44_2, textreview44_3, textreview44_4, textreview44_5)
+
+product44df <- data.frame( ProductName = productname44,
+                          reviewers = combinedreviewers44,
+                          star_rates = combinedstars44,
+                         date_of_review = combineddate44,
+                         text_review = combinedtext44)
+product44df
+write.csv(product44df, "44Product.csv")
+```
+
+```{r}
+urlprod45_1 <- "https://www.amazon.com/Shokz-OpenRun-Pro-Conduction-Built/product-reviews/B09BVXT8TJ/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session45_1 <- bow(urlprod45_1, user_agent = "educational purposes")
+url45_1 <- read_html(urlprod45_1)
+```
+
+```{r}
+productname45 <- url45_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername45_1 <- url45_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername45_1 <- reviewername45_1[3:12]
+
+# Get the star ratings of the reviewer
+starreview45_1 <- url45_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit45_1 <- str_extract(starreview45_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles45_1 <- lapply(starreview45_1, function(revtitle45_1) {
+  revtitle45_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle45_1)
+  revtitle45_1 <- trimws(revtitle45_1)
+  return(revtitle45_1)
+})
+
+# Get the date of the review
+dateofreview45_1 <- url45_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview45_1 <- str_extract(dateofreview45_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate45_1 <- splitdatereview45_1[3:12]
+
+# Get the content of the review
+textreview45_1 <- url45_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod45_2 <- "https://www.amazon.com/Shokz-OpenRun-Pro-Conduction-Built/product-reviews/B09BVXT8TJ/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session45_2 <- bow(urlprod45_2, user_agent = "educational purposes")
+url45_2 <- read_html(urlprod45_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername45_2 <- url45_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername45_2 <- reviewername45_2[3:12]
+
+# Get the star ratings of the reviewer
+starreview45_2 <- url45_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit45_2 <- str_extract(starreview45_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles45_2 <- lapply(starreview45_2, function(revtitle45_2) {
+  revtitle45_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle45_2)
+  revtitle45_2 <- trimws(revtitle45_2)
+  return(revtitle45_2)
+})
+
+# Get the date of the review
+dateofreview45_2 <- url45_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview45_2 <- str_extract(dateofreview45_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate45_2 <- splitdatereview45_2[3:12]
+
+# Get the content of the review
+textreview45_2 <- url45_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod45_3 <- "https://www.amazon.com/Shokz-OpenRun-Pro-Conduction-Built/product-reviews/B09BVXT8TJ/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session45_3 <- bow(urlprod45_3, user_agent = "educational purposes")
+url45_3 <- read_html(urlprod45_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername45_3 <- url45_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername45_3 <- reviewername45_3[3:12]
+
+# Get the star ratings of the reviewer
+starreview45_3 <- url45_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit45_3 <- str_extract(starreview45_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles45_3 <- lapply(starreview45_3, function(revtitle45_3) {
+  revtitle45_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle45_3)
+  revtitle45_3 <- trimws(revtitle45_3)
+  return(revtitle45_3)
+})
+
+# Get the date of the review
+dateofreview45_3 <- url45_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview45_3 <- str_extract(dateofreview45_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate45_3 <- splitdatereview45_3[3:12]
+
+# Get the content of the review
+textreview45_3 <- url45_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod45_4 <- "https://www.amazon.com/Shokz-OpenRun-Pro-Conduction-Built/product-reviews/B09BVXT8TJ/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session45_4 <- bow(urlprod45_4, user_agent = "educational purposes")
+url45_4 <- read_html(urlprod45_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername45_4 <- url45_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername45_4 <- reviewername45_4[3:13]
+subsetreviewername45_4 <- subsetreviewername45_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview45_4 <- url45_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit45_4 <- str_extract(starreview45_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles45_4 <- lapply(starreview45_4, function(revtitle45_4) {
+  revtitle45_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle45_4)
+  revtitle45_4 <- trimws(revtitle45_4)
+  return(revtitle45_4)
+})
+
+# Get the date of the review
+dateofreview45_4 <- url45_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview45_4 <- str_extract(dateofreview45_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate45_4 <- splitdatereview45_4[3:12]
+
+# Get the content of the review
+textreview45_4 <- url45_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod45_5 <- "https://www.amazon.com/Shokz-OpenRun-Pro-Conduction-Built/product-reviews/B09BVXT8TJ/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session45_5 <- bow(urlprod45_5, user_agent = "educational purposes")
+url45_5 <- read_html(urlprod45_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername45_5 <- url45_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername45_5 <- reviewername45_5[3:13]
+subsetreviewername45_5 <- subsetreviewername45_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview45_5 <- url45_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit45_5 <- str_extract(starreview45_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles45_5 <- lapply(starreview45_5, function(revtitle45_5) {
+  revtitle45_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle45_5)
+  revtitle45_5 <- trimws(revtitle45_5)
+  return(revtitle45_5)
+})
+
+# Get the date of the review
+dateofreview45_5 <- url45_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview45_5 <- str_extract(dateofreview45_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate45_5 <- splitdatereview45_5[3:12]
+
+# Get the content of the review
+textreview45_5 <- url45_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers45 <- c(subsetreviewername45_1,subsetreviewername45_2,subsetreviewername45_3,subsetreviewername45_4, subsetreviewername45_5)
+
+combinedstars45 <- c(starsplit45_1,starsplit45_2, starsplit45_3, starsplit45_4, starsplit45_5)
+
+combineddate45 <- c(subsetdate45_1, subsetdate45_2, subsetdate45_3, subsetdate45_4, subsetdate45_5)
+
+combinedtext45 <- c(textreview45_1, textreview45_2, textreview45_3, textreview45_4, textreview45_5)
+
+product45df <- data.frame( ProductName = productname45,
+                          reviewers = combinedreviewers45,
+                          star_rates = combinedstars45,
+                         date_of_review = combineddate45,
+                         text_review = combinedtext45)
+product45df
+write.csv(product45df, "45Product.csv")
+```
+
+```{r}
+urlprod46_1 <- "https://www.amazon.com/Misxi-Protector-Compatible-Ultra-Thin-Protective/product-reviews/B09JWDZ64S/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session46_1 <- bow(urlprod46_1, user_agent = "educational purposes")
+url46_1 <- read_html(urlprod46_1)
+```
+
+```{r}
+productname46 <- url46_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername46_1 <- url46_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername46_1 <- reviewername46_1[3:13]
+subsetreviewername46_1 <- subsetreviewername46_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview46_1 <- url46_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit46_1 <- str_extract(starreview46_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles46_1 <- lapply(starreview46_1, function(revtitle46_1) {
+  revtitle46_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle46_1)
+  revtitle46_1 <- trimws(revtitle46_1)
+  return(revtitle46_1)
+})
+
+# Get the date of the review
+dateofreview46_1 <- url46_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview46_1 <- str_extract(dateofreview46_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate46_1 <- splitdatereview46_1[3:12]
+
+# Get the content of the review
+textreview46_1 <- url46_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod46_2 <- "https://www.amazon.com/Misxi-Protector-Compatible-Ultra-Thin-Protective/product-reviews/B09JWDZ64S/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session46_2 <- bow(urlprod46_2, user_agent = "educational purposes")
+url46_2 <- read_html(urlprod46_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername46_2 <- url46_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername46_2 <- reviewername46_2[3:13]
+subsetreviewername46_2 <- subsetreviewername46_2[1:10]
+
+# Get the star ratings of the reviewer
+starreview46_2 <- url46_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit46_2 <- str_extract(starreview46_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles46_2 <- lapply(starreview46_2, function(revtitle46_2) {
+  revtitle46_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle46_2)
+  revtitle46_2 <- trimws(revtitle46_2)
+  return(revtitle46_2)
+})
+
+# Get the date of the review
+dateofreview46_2 <- url46_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview46_2 <- str_extract(dateofreview46_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate46_2 <- splitdatereview46_2[3:12]
+
+# Get the content of the review
+textreview46_2 <- url46_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod46_3 <- "https://www.amazon.com/Misxi-Protector-Compatible-Ultra-Thin-Protective/product-reviews/B09JWDZ64S/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session46_3 <- bow(urlprod46_3, user_agent = "educational purposes")
+url46_3 <- read_html(urlprod46_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername46_3 <- url46_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername46_3 <- reviewername46_3[3:15]
+subsetreviewername46_3 <- subsetreviewername46_3[1:10]
+
+# Get the star ratings of the reviewer
+starreview46_3 <- url46_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit46_3 <- str_extract(starreview46_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles46_3 <- lapply(starreview46_3, function(revtitle46_3) {
+  revtitle46_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle46_3)
+  revtitle46_3 <- trimws(revtitle46_3)
+  return(revtitle46_3)
+})
+
+# Get the date of the review
+dateofreview46_3 <- url46_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview46_3 <- str_extract(dateofreview46_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate46_3 <- splitdatereview46_3[3:12]
+
+# Get the content of the review
+textreview46_3 <- url46_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod46_4 <- "https://www.amazon.com/Misxi-Protector-Compatible-Ultra-Thin-Protective/product-reviews/B09JWDZ64S/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session46_4 <- bow(urlprod46_4, user_agent = "educational purposes")
+url46_4 <- read_html(urlprod46_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername46_4 <- url46_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername46_4 <- reviewername46_4[3:14]
+subsetreviewername46_4 <- subsetreviewername46_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview46_4 <- url46_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit46_4 <- str_extract(starreview46_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles46_4 <- lapply(starreview46_4, function(revtitle46_4) {
+  revtitle46_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle46_4)
+  revtitle46_4 <- trimws(revtitle46_4)
+  return(revtitle46_4)
+})
+
+# Get the date of the review
+dateofreview46_4 <- url46_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview46_4 <- str_extract(dateofreview46_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate46_4 <- splitdatereview46_4[3:12]
+
+# Get the content of the review
+textreview46_4 <- url46_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod46_5 <- "https://www.amazon.com/Misxi-Protector-Compatible-Ultra-Thin-Protective/product-reviews/B09JWDZ64S/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session46_5 <- bow(urlprod46_5, user_agent = "educational purposes")
+url46_5 <- read_html(urlprod46_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername46_5 <- url46_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername46_5 <- reviewername46_5[3:15]
+subsetreviewername46_5 <- subsetreviewername46_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview46_5 <- url46_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit46_5 <- str_extract(starreview46_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles46_5 <- lapply(starreview46_5, function(revtitle46_5) {
+  revtitle46_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle46_5)
+  revtitle46_5 <- trimws(revtitle46_5)
+  return(revtitle46_5)
+})
+
+# Get the date of the review
+dateofreview46_5 <- url46_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview46_5 <- str_extract(dateofreview46_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate46_5 <- splitdatereview46_5[3:12]
+
+# Get the content of the review
+textreview46_5 <- url46_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers46 <- c(subsetreviewername46_1,subsetreviewername46_2,subsetreviewername46_3,subsetreviewername46_4, subsetreviewername46_5)
+
+combinedstars46 <- c(starsplit46_1,starsplit46_2, starsplit46_3, starsplit46_4, starsplit46_5)
+
+combineddate46 <- c(subsetdate46_1, subsetdate46_2, subsetdate46_3, subsetdate46_4, subsetdate46_5)
+
+combinedtext46 <- c(textreview46_1, textreview46_2, textreview46_3, textreview46_4, textreview46_5)
+
+product46df <- data.frame( ProductName = productname46,
+                          reviewers = combinedreviewers46,
+                          star_rates = combinedstars46,
+                         date_of_review = combineddate46,
+                         text_review = combinedtext46)
+product46df
+write.csv(product46df, "46Product.csv")
+```
+
+```{r}
+urlprod47_1 <- "https://www.amazon.com/Replacement-Reduction-Silicone-Portable-Charging/product-reviews/B08HT46TVP/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session47_1 <- bow(urlprod47_1, user_agent = "educational purposes")
+url47_1 <- read_html(urlprod47_1)
+```
+
+```{r}
+productname47 <- url47_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername47_1 <- url47_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername47_1 <- reviewername47_1[3:15]
+subsetreviewername47_1 <- subsetreviewername47_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview47_1 <- url47_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit47_1 <- str_extract(starreview47_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles47_1 <- lapply(starreview47_1, function(revtitle47_1) {
+  revtitle47_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle47_1)
+  revtitle47_1 <- trimws(revtitle47_1)
+  return(revtitle47_1)
+})
+
+# Get the date of the review
+dateofreview47_1 <- url47_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview47_1 <- str_extract(dateofreview47_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate47_1 <- splitdatereview47_1[3:12]
+
+# Get the content of the review
+textreview47_1 <- url47_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod47_2 <- "https://www.amazon.com/Replacement-Reduction-Silicone-Portable-Charging/product-reviews/B08HT46TVP/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session47_2 <- bow(urlprod47_2, user_agent = "Educational purposes")
+url47_2 <- read_html(urlprod47_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername47_2 <- url47_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername47_2 <- reviewername47_2[1:10]
+
+# Get the star ratings of the reviewer
+starreview47_2 <- url47_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit47_2 <- str_extract(starreview47_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles47_2 <- lapply(starreview47_2, function(revtitle47_2) {
+  revtitle47_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle47_2)
+  revtitle47_2 <- trimws(revtitle47_2)
+  return(revtitle47_2)
+})
+
+# Get the date of the review
+dateofreview47_2 <- url47_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview47_2 <- str_extract(dateofreview47_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate47_2 <- splitdatereview47_2[3:12]
+
+# Get the content of the review
+textreview47_2 <- url47_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod47_3 <- "https://www.amazon.com/Replacement-Reduction-Silicone-Portable-Charging/product-reviews/B08HT46TVP/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session47_3 <- bow(urlprod47_3, user_agent = "educational purposes")
+url47_3 <- read_html(urlprod47_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername47_3 <- url47_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername47_3 <- reviewername47_3[3:13]
+subsetreviewername47_3 <- subsetreviewername47_3[1:10]
+
+# Get the star ratings of the reviewer
+starreview47_3 <- url47_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit47_3 <- str_extract(starreview47_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles47_3 <- lapply(starreview47_3, function(revtitle47_3) {
+  revtitle47_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle47_3)
+  revtitle47_3 <- trimws(revtitle47_3)
+  return(revtitle47_3)
+})
+
+# Get the date of the review
+dateofreview47_3 <- url47_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview47_3 <- str_extract(dateofreview47_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate47_3 <- splitdatereview47_3[3:12]
+
+# Get the content of the review
+textreview47_3 <- url47_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod47_4 <- "https://www.amazon.com/Replacement-Reduction-Silicone-Portable-Charging/product-reviews/B08HT46TVP/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session47_4 <- bow(urlprod47_4, user_agent = "educational purposes")
+url47_4 <- read_html(urlprod47_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername47_4 <- url47_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername47_4 <- reviewername47_4[3:13]
+subsetreviewername47_4 <- subsetreviewername47_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview47_4 <- url47_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit47_4 <- str_extract(starreview47_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles47_4 <- lapply(starreview47_4, function(revtitle47_4) {
+  revtitle47_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle47_4)
+  revtitle47_4 <- trimws(revtitle47_4)
+  return(revtitle47_4)
+})
+
+# Get the date of the review
+dateofreview47_4 <- url47_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview47_4 <- str_extract(dateofreview47_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate47_4 <- splitdatereview47_4[3:12]
+
+# Get the content of the review
+textreview47_4 <- url47_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod47_5 <- "https://www.amazon.com/Replacement-Reduction-Silicone-Portable-Charging/product-reviews/B08HT46TVP/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session47_5 <- bow(urlprod47_5, user_agent = "educational purposes")
+url47_5 <- read_html(urlprod47_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername47_5 <- url47_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the 2nd page reviewer to get only the 10 reviewers
+subsetreviewername47_5 <- reviewername47_5[3:13]
+subsetreviewername47_5 <- subsetreviewername47_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview47_5 <- url47_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit47_5 <- str_extract(starreview47_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles47_5 <- lapply(starreview47_5, function(revtitle47_5) {
+  revtitle47_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle47_5)
+  revtitle47_5 <- trimws(revtitle47_5)
+  return(revtitle47_5)
+})
+
+# Get the date of the review
+dateofreview47_5 <- url47_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview47_5 <- str_extract(dateofreview47_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate47_5 <- splitdatereview47_5[3:12]
+
+# Get the content of the review
+textreview47_5 <- url47_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+#combine the items first
+combinedreviewers47 <- c(subsetreviewername47_1,subsetreviewername47_2,subsetreviewername47_3,subsetreviewername47_4, subsetreviewername47_5)
+
+combinedstars47 <- c(starsplit47_1,starsplit47_2, starsplit47_3, starsplit47_4, starsplit47_5)
+
+combineddate47 <- c(subsetdate47_1, subsetdate47_2, subsetdate47_3, subsetdate47_4, subsetdate47_5)
+
+combinedtext47 <- c(textreview47_1, textreview47_2, textreview47_3, textreview47_4, textreview47_5)
+
+product47df <- data.frame( ProductName = productname47,
+                          reviewers = combinedreviewers47,
+                          star_rates = combinedstars47,
+                         date_of_review = combineddate47,
+                         text_review = combinedtext47)
+product47df
+write.csv(product47df, "47Product.csv")
+```
+
+```{r}
+urlprod48_1 <- "https://www.amazon.com/Redragon-Wireless-Backlit-Programmable-Rechargeable/product-reviews/B0B66RHD7B/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session48_1 <- bow(urlprod48_1, user_agent = "educational purposes")
+url48_1 <- read_html(urlprod48_1)
+```
+
+```{r}
+productname48 <- url48_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername48_1 <- url48_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername48_1 <- reviewername48_1[3:15]
+subsetreviewername48_1 <- subsetreviewername48_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview48_1 <- url48_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit48_1 <- str_extract(starreview48_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles48_1 <- lapply(starreview48_1, function(revtitle48_1) {
+  revtitle48_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle48_1)
+  revtitle48_1 <- trimws(revtitle48_1)
+  return(revtitle48_1)
+})
+
+# Get the date of the review
+dateofreview48_1 <- url48_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview48_1 <- str_extract(dateofreview48_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate48_1 <- splitdatereview48_1[3:12]
+
+# Get the content of the review
+textreview48_1 <- url48_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod48_2 <- "https://www.amazon.com/Redragon-Wireless-Backlit-Programmable-Rechargeable/product-reviews/B0B66RHD7B/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session48_2 <- bow(urlprod48_2, user_agent = "educational purposes")
+url48_2 <- read_html(urlprod48_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername48_2 <- url48_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername48_2 <- reviewername48_2[3:13]
+subsetreviewername48_2 <- subsetreviewername48_2[1:10]
+
+# Get the star ratings of the reviewer
+starreview48_2 <- url48_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit48_2 <- str_extract(starreview48_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles48_2 <- lapply(starreview48_2, function(revtitle48_2) {
+  revtitle48_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle48_2)
+  revtitle48_2 <- trimws(revtitle48_2)
+  return(revtitle48_2)
+})
+
+# Get the date of the review
+dateofreview48_2 <- url48_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview48_2 <- str_extract(dateofreview48_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate48_2 <- splitdatereview48_2[3:12]
+
+# Get the content of the review
+textreview48_2 <- url48_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod48_3 <- "https://www.amazon.com/Redragon-Wireless-Backlit-Programmable-Rechargeable/product-reviews/B0B66RHD7B/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session48_3 <- bow(urlprod48_3, user_agent = "educational purposes")
+url48_3 <- read_html(urlprod48_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername48_3 <- url48_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername48_3 <- reviewername48_3[3:12]
+
+# Get the star ratings of the reviewer
+starreview48_3 <- url48_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit48_3 <- str_extract(starreview48_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles48_3 <- lapply(starreview48_3, function(revtitle48_3) {
+  revtitle48_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle48_3)
+  revtitle48_3 <- trimws(revtitle48_3)
+  return(revtitle48_3)
+})
+
+# Get the date of the review
+dateofreview48_3 <- url48_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview48_3 <- str_extract(dateofreview48_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate48_3 <- splitdatereview48_3[3:12]
+
+# Get the content of the review
+textreview48_3 <- url48_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod48_4 <- "https://www.amazon.com/Redragon-Wireless-Backlit-Programmable-Rechargeable/product-reviews/B0B66RHD7B/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session48_4 <- bow(urlprod48_4, user_agent = "educational purposes")
+url48_4 <- read_html(urlprod48_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername48_4 <- url48_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername48_4 <- reviewername48_4[3:13]
+subsetreviewername48_4 <- subsetreviewername48_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview48_4 <- url48_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit48_4 <- str_extract(starreview48_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles48_4 <- lapply(starreview48_4, function(revtitle48_4) {
+  revtitle48_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle48_4)
+  revtitle48_4 <- trimws(revtitle48_4)
+  return(revtitle48_4)
+})
+
+# Get the date of the review
+dateofreview48_4 <- url48_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview48_4 <- str_extract(dateofreview48_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate48_4 <- splitdatereview48_4[3:12]
+
+# Get the content of the review
+textreview48_4 <- url48_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+
+```{r}
+urlprod48_5 <- "https://www.amazon.com/Redragon-Wireless-Backlit-Programmable-Rechargeable/product-reviews/B0B66RHD7B/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session48_5 <- bow(urlprod48_5, user_agent = "educational purposes")
+url48_5 <- read_html(urlprod48_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername48_5 <- url48_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername48_5 <- reviewername48_5[3:14]
+subsetreviewername48_5 <- subsetreviewername48_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview48_5 <- url48_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit48_5 <- str_extract(starreview48_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles48_5 <- lapply(starreview48_5, function(revtitle48_5) {
+  revtitle48_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle48_5)
+  revtitle48_5 <- trimws(revtitle48_5)
+  return(revtitle48_5)
+})
+
+# Get the date of the review
+dateofreview48_5 <- url48_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview48_5 <- str_extract(dateofreview48_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate48_5 <- splitdatereview48_5[3:12]
+
+# Get the content of the review
+textreview48_5 <- url48_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers48 <- c(subsetreviewername48_1,subsetreviewername48_2,subsetreviewername48_3,subsetreviewername48_4, subsetreviewername48_5)
+
+combinedstars48 <- c(starsplit48_1,starsplit48_2, starsplit48_3, starsplit48_4, starsplit48_5)
+
+combineddate48 <- c(subsetdate48_1, subsetdate48_2, subsetdate48_3, subsetdate48_4, subsetdate48_5)
+
+combinedtext48 <- c(textreview48_1, textreview48_2, textreview48_3, textreview48_4, textreview48_5)
+
+product48df <- data.frame( ProductName = productname48,
+                          reviewers = combinedreviewers48,
+                          star_rates = combinedstars48,
+                         date_of_review = combineddate48,
+                         text_review = combinedtext48)
+product48df
+write.csv(product48df, "48Product.csv")
+```
+
+```{r}
+urlprod49_1 <- "https://www.amazon.com/Redragon-M602-Ergonomic-High-Precision-Programmable/product-reviews/B011HMDZ0Q/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session49_1 <- bow(urlprod49_1, user_agent = "educational purposes")
+url49_1 <- read_html(urlprod49_1)
+```
+
+```{r}
+productname49 <- url49_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername49_1 <- url49_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername49_1 <- reviewername49_1[3:14]
+subsetreviewername49_1 <- subsetreviewername49_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview49_1 <- url49_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit49_1 <- str_extract(starreview49_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles49_1 <- lapply(starreview49_1, function(revtitle49_1) {
+  revtitle49_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle49_1)
+  revtitle49_1 <- trimws(revtitle49_1)
+  return(revtitle49_1)
+})
+
+# Get the date of the review
+dateofreview49_1 <- url49_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview49_1 <- str_extract(dateofreview49_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate49_1 <- splitdatereview49_1[3:12]
+
+# Get the content of the review
+textreview49_1 <- url49_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod49_2 <- "https://www.amazon.com/Redragon-M602-Ergonomic-High-Precision-Programmable/product-reviews/B011HMDZ0Q/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session49_2 <- bow(urlprod49_2, user_agent = "educational purposes")
+url49_2 <- read_html(urlprod49_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername49_2 <- url49_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername49_2 <- reviewername49_2[3:13]
+subsetreviewername49_2 <- subsetreviewername49_2[1:10]
+
+# Get the star ratings of the reviewer
+starreview49_2 <- url49_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit49_2 <- str_extract(starreview49_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles49_2 <- lapply(starreview49_2, function(revtitle49_2) {
+  revtitle49_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle49_2)
+  revtitle49_2 <- trimws(revtitle49_2)
+  return(revtitle49_2)
+})
+
+# Get the date of the review
+dateofreview49_2 <- url49_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview49_2 <- str_extract(dateofreview49_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate49_2 <- splitdatereview49_2[3:12]
+
+# Get the content of the review
+textreview49_2 <- url49_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod49_3 <- "https://www.amazon.com/Redragon-M602-Ergonomic-High-Precision-Programmable/product-reviews/B011HMDZ0Q/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session49_3 <- bow(urlprod49_3, user_agent = "educational purposes")
+url49_3 <- read_html(urlprod49_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername49_3 <- url49_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername49_3 <- reviewername49_3[3:15]
+subsetreviewername49_3 <- subsetreviewername49_3[1:10]
+
+# Get the star ratings of the reviewer
+starreview49_3 <- url49_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit49_3 <- str_extract(starreview49_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles49_3 <- lapply(starreview49_3, function(revtitle49_3) {
+  revtitle49_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle49_3)
+  revtitle49_3 <- trimws(revtitle49_3)
+  return(revtitle49_3)
+})
+
+# Get the date of the review
+dateofreview49_3 <- url49_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview49_3 <- str_extract(dateofreview49_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate49_3 <- splitdatereview49_3[3:12]
+
+# Get the content of the review
+textreview49_3 <- url49_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod49_4 <- "https://www.amazon.com/Redragon-M602-Ergonomic-High-Precision-Programmable/product-reviews/B011HMDZ0Q/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session49_4 <- bow(urlprod49_4, user_agent = "educational purposes")
+url49_4 <- read_html(urlprod49_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername49_4 <- url49_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername49_4 <- reviewername49_4[3:13]
+subsetreviewername49_4 <- subsetreviewername49_4[1:10]
+
+# Get the star ratings of the reviewer
+starreview49_4 <- url49_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit49_4 <- str_extract(starreview49_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles49_4 <- lapply(starreview49_4, function(revtitle49_4) {
+  revtitle49_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle49_4)
+  revtitle49_4 <- trimws(revtitle49_4)
+  return(revtitle49_4)
+})
+
+# Get the date of the review
+dateofreview49_4 <- url49_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview49_4 <- str_extract(dateofreview49_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate49_4 <- splitdatereview49_4[3:12]
+
+# Get the content of the review
+textreview49_4 <- url49_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod49_5 <- "https://www.amazon.com/Redragon-M602-Ergonomic-High-Precision-Programmable/product-reviews/B011HMDZ0Q/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session49_5 <- bow(urlprod49_5, user_agent = "educational purposes")
+url49_5 <- read_html(urlprod49_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername49_5 <- url49_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername49_5 <- reviewername49_5[3:13]
+subsetreviewername49_5 <- subsetreviewername49_5[1:10]
+
+# Get the star ratings of the reviewer
+starreview49_5 <- url49_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit49_5 <- str_extract(starreview49_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles49_5 <- lapply(starreview49_5, function(revtitle49_5) {
+  revtitle49_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle49_5)
+  revtitle49_5 <- trimws(revtitle49_5)
+  return(revtitle49_5)
+})
+
+# Get the date of the review
+dateofreview49_5 <- url49_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview49_5 <- str_extract(dateofreview49_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate49_5 <- splitdatereview49_5[3:12]
+
+# Get the content of the review
+textreview49_5 <- url49_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers49 <- c(subsetreviewername49_1,subsetreviewername49_2,subsetreviewername49_3,subsetreviewername49_4, subsetreviewername49_5)
+
+combinedstars49 <- c(starsplit49_1,starsplit49_2, starsplit49_3, starsplit49_4, starsplit49_5)
+
+combineddate49 <- c(subsetdate49_1, subsetdate49_2, subsetdate49_3, subsetdate49_4, subsetdate49_5)
+
+combinedtext49 <- c(textreview49_1, textreview49_2, textreview49_3, textreview49_4, textreview49_5)
+
+product49df <- data.frame( ProductName = productname49,
+                          reviewers = combinedreviewers49,
+                          star_rates = combinedstars49,
+                         date_of_review = combineddate49,
+                         text_review = combinedtext49)
+product49df
+write.csv(product49df, "49Product.csv")
+```
+
+```{r}
+urlprod50_1 <- "https://www.amazon.com/Charging-Station-iPhone-Wireless-Charger/product-reviews/B0BFCC18FS/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+session50_1 <- bow(urlprod50_1, user_agent = "educational purposes")
+url50_1 <- read_html(urlprod50_1)
+```
+
+```{r}
+productname50 <- url50_1 %>%
+  html_nodes("h1.a-size-large.a-text-ellipsis") %>%
+  html_text()
+# Get the reviewer's name
+reviewername50_1 <- url50_1 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername50_1 <- reviewername50_1[3:14]
+subsetreviewername50_1 <- subsetreviewername50_1[1:10]
+
+# Get the star ratings of the reviewer
+starreview50_1 <- url50_1 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit50_1 <- str_extract(starreview50_1, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles50_1 <- lapply(starreview50_1, function(revtitle50_1) {
+  revtitle50_1 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle50_1)
+  revtitle50_1 <- trimws(revtitle50_1)
+  return(revtitle50_1)
+})
+
+# Get the date of the review
+dateofreview50_1 <- url50_1 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview50_1 <- str_extract(dateofreview50_1, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate50_1 <- splitdatereview50_1[3:12]
+
+# Get the content of the review
+textreview50_1 <- url50_1 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod50_2 <- "https://www.amazon.com/Charging-Station-iPhone-Wireless-Charger/product-reviews/B0BFCC18FS/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+session50_2 <- bow(urlprod50_2, user_agent = "educational purposes")
+url50_2 <- read_html(urlprod50_2)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername50_2 <- url50_2 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername50_2 <- reviewername50_2[3:12]
+
+# Get the star ratings of the reviewer
+starreview50_2 <- url50_2 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit50_2 <- str_extract(starreview50_2, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles50_2 <- lapply(starreview50_2, function(revtitle50_2) {
+  revtitle50_2 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle50_2)
+  revtitle50_2 <- trimws(revtitle50_2)
+  return(revtitle50_2)
+})
+
+# Get the date of the review
+dateofreview50_2 <- url50_2 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview50_2 <- str_extract(dateofreview50_2, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate50_2 <- splitdatereview50_2[3:12]
+
+# Get the content of the review
+textreview50_2 <- url50_2 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod50_3 <- "https://www.amazon.com/Charging-Station-iPhone-Wireless-Charger/product-reviews/B0BFCC18FS/ref=cm_cr_arp_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+session50_3 <- bow(urlprod50_3, user_agent = "educational purposes")
+url50_3 <- read_html(urlprod50_3)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername50_3 <- url50_3 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername50_3 <- reviewername50_3[3:13]
+subsetreviewername50_3 <- subsetreviewername50_3[1:10]
+
+# Get the star ratings of the reviewer
+starreview50_3 <- url50_3 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit50_3 <- str_extract(starreview50_3, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles50_3 <- lapply(starreview50_3, function(revtitle50_3) {
+  revtitle50_3 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle50_3)
+  revtitle50_3 <- trimws(revtitle50_3)
+  return(revtitle50_3)
+})
+
+# Get the date of the review
+dateofreview50_3 <- url50_3 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview50_3 <- str_extract(dateofreview50_3, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate50_3 <- splitdatereview50_3[3:12]
+
+# Get the content of the review
+textreview50_3 <- url50_3 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod50_4 <- "https://www.amazon.com/Charging-Station-iPhone-Wireless-Charger/product-reviews/B0BFCC18FS/ref=cm_cr_arp_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+session50_4 <- bow(urlprod50_4, user_agent = "educational purposes")
+url50_4 <- read_html(urlprod50_4)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername50_4 <- url50_4 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername50_4 <- reviewername50_4[3:12]
+
+# Get the star ratings of the reviewer
+starreview50_4 <- url50_4 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit50_4 <- str_extract(starreview50_4, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles50_4 <- lapply(starreview50_4, function(revtitle50_4) {
+  revtitle50_4 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle50_4)
+  revtitle50_4 <- trimws(revtitle50_4)
+  return(revtitle50_4)
+})
+
+# Get the date of the review
+dateofreview50_4 <- url50_4 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview50_4 <- str_extract(dateofreview50_4, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate50_4 <- splitdatereview50_4[3:12]
+
+# Get the content of the review
+textreview50_4 <- url50_4 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+urlprod50_5 <- "https://www.amazon.com/Charging-Station-iPhone-Wireless-Charger/product-reviews/B0BFCC18FS/ref=cm_cr_arp_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+session50_5 <- bow(urlprod50_5, user_agent = "educational purposes")
+url50_5 <- read_html(urlprod50_5)
+```
+
+```{r}
+# Get the reviewer's name
+reviewername50_5 <- url50_5 %>% 
+  html_nodes("span.a-profile-name") %>%
+  html_text()
+
+# Subset the page reviewer to get only the 10 reviewers
+subsetreviewername50_5 <- reviewername50_5[3:12]
+
+# Get the star ratings of the reviewer
+starreview50_5 <- url50_5 %>% 
+  html_nodes("a.review-title") %>%
+  html_text()
+
+# Split it to exclude the title review
+starsplit50_5 <- str_extract(starreview50_5, "^\\d+\\.\\d+ out of \\d+ stars")
+
+# Get the review title and use gsub to remove the star ratings
+review_titles50_5 <- lapply(starreview50_5, function(revtitle50_5) {
+  revtitle50_5 <- gsub("\\d+\\.\\d+ out of \\d+ stars", " ", revtitle50_5)
+  revtitle50_5 <- trimws(revtitle50_5)
+  return(revtitle50_5)
+})
+
+# Get the date of the review
+dateofreview50_5 <- url50_5 %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+# Split the date from the text
+splitdatereview50_5 <- str_extract(dateofreview50_5, "\\b\\w+ \\d{1,2}, \\d{4}\\b")
+
+# Subset dates to remove first 2 content to get only the reviews not the top 2
+subsetdate50_5 <- splitdatereview50_5[3:12]
+
+# Get the content of the review
+textreview50_5 <- url50_5 %>%
+  html_nodes("span.a-size-base.review-text.review-text-content") %>%
+  html_text()
+
+```
+
+```{r}
+#combine the items first
+combinedreviewers50 <- c(subsetreviewername50_1,subsetreviewername50_2,subsetreviewername50_3,subsetreviewername50_4, subsetreviewername50_5)
+
+combinedstars50 <- c(starsplit50_1,starsplit50_2, starsplit50_3, starsplit50_4, starsplit50_5)
+
+combineddate50 <- c(subsetdate50_1, subsetdate50_2, subsetdate50_3, subsetdate50_4, subsetdate50_5)
+
+combinedtext50 <- c(textreview50_1, textreview50_2, textreview50_3, textreview50_4, textreview50_5)
+
+product50df <- data.frame( ProductName = productname50,
+                          reviewers = combinedreviewers50,
+                          star_rates = combinedstars50,
+                         date_of_review = combineddate50,
+                         text_review = combinedtext50)
+product50df
+write.csv(product50df, "50Product.csv")
+```
 
 
 
