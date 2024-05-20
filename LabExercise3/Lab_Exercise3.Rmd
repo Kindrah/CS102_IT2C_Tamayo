@@ -843,10 +843,37 @@ write.csv(moviesdf, "IMDBmovies.csv")
 read.csv("IMDBmovies.csv")
 ```
 
+```{r}
+library(DBI)
+library(odbc)
+library(RMySQL)
+library(dplyr,dbplyr)
 
+#creating connections
+connection <- dbConnect(RMySQL::MySQL(),
+                        dsn="MariaDB-connection",
+                        Server = "labexercise3",
+                        dbname = "labexercise3",
+                        user = "root",
+                        password = "")
+```
+```{r}
+library(readr)
 
+imdbMovies <- read.csv("IMDBmovies.csv")
+```
 
+```{r}
+dbWriteTable(connection, 'movies', imdbMovies[1:100, ], append = TRUE)
 
+head(dbReadTable(connection, 'movies'))
+```
 
+```{r}
 
+dbListTables(connection, 'movies',imdbMovies, append = TRUE)
+#read and write data from database
+data <- dbGetQuery(connection, "SELECT * FROM movies")
+glimpse(data)
 
+```
